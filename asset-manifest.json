@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/ViaLaBrioche/MyDogfood/static/css/main.44997f73.css",
-    "main.js": "/ViaLaBrioche/MyDogfood/static/js/main.82c38263.js",
-    "static/media/logoFooter.svg": "/ViaLaBrioche/MyDogfood/static/media/logoFooter.59bf6987ce5ad7a30c6f6d1b45a5226d.svg",
-    "static/media/logoDogo.svg": "/ViaLaBrioche/MyDogfood/static/media/logoDogo.dda4d76b73ae669e8e4e16869937b992.svg",
-    "static/media/quality.svg": "/ViaLaBrioche/MyDogfood/static/media/quality.f9c357b52bd41495be48401818180b35.svg",
-    "static/media/logo-instagram.svg": "/ViaLaBrioche/MyDogfood/static/media/logo-instagram.ee343c224c183f85022c39390295aaf3.svg",
-    "static/media/logo-viber.svg": "/ViaLaBrioche/MyDogfood/static/media/logo-viber.95bf959b6838dfc9b21e37f2857111b4.svg",
-    "static/media/dog.svg": "/ViaLaBrioche/MyDogfood/static/media/dog.f7c59a99facb6bd97b24953d94acd57a.svg",
-    "static/media/logo-phone.svg": "/ViaLaBrioche/MyDogfood/static/media/logo-phone.51cbd71440eaa90946070b8848c12129.svg",
-    "static/media/logo-vk.svg": "/ViaLaBrioche/MyDogfood/static/media/logo-vk.10a8eaae72b1edd421b5bc7a6c31d978.svg",
-    "static/media/delivery.svg": "/ViaLaBrioche/MyDogfood/static/media/delivery.7b8634da6632f6eb8eba1207c1c07586.svg",
-    "index.html": "/ViaLaBrioche/MyDogfood/index.html",
-    "static/media/loupe.svg": "/ViaLaBrioche/MyDogfood/static/media/loupe.4c69a8d32fd282582d66d1ff6c8cd917.svg",
-    "static/media/heart.svg": "/ViaLaBrioche/MyDogfood/static/media/heart.7d0dc723c4728cf6f8b36dcc55cfd2a4.svg",
-    "static/media/logo-telegram.svg": "/ViaLaBrioche/MyDogfood/static/media/logo-telegram.124803772b93c360fe68c6af8895c56d.svg",
-    "static/media/basket.svg": "/ViaLaBrioche/MyDogfood/static/media/basket.b3d22710863f40a39594fb6c3a3877ac.svg",
-    "main.44997f73.css.map": "/ViaLaBrioche/MyDogfood/static/css/main.44997f73.css.map",
-    "main.82c38263.js.map": "/ViaLaBrioche/MyDogfood/static/js/main.82c38263.js.map"
+    "main.css": "/MyDogfood/static/css/main.44997f73.css",
+    "main.js": "/MyDogfood/static/js/main.2d65af5a.js",
+    "static/media/logoFooter.svg": "/MyDogfood/static/media/logoFooter.59bf6987ce5ad7a30c6f6d1b45a5226d.svg",
+    "static/media/logoDogo.svg": "/MyDogfood/static/media/logoDogo.dda4d76b73ae669e8e4e16869937b992.svg",
+    "static/media/quality.svg": "/MyDogfood/static/media/quality.f9c357b52bd41495be48401818180b35.svg",
+    "static/media/logo-instagram.svg": "/MyDogfood/static/media/logo-instagram.ee343c224c183f85022c39390295aaf3.svg",
+    "static/media/logo-viber.svg": "/MyDogfood/static/media/logo-viber.95bf959b6838dfc9b21e37f2857111b4.svg",
+    "static/media/dog.svg": "/MyDogfood/static/media/dog.f7c59a99facb6bd97b24953d94acd57a.svg",
+    "static/media/logo-phone.svg": "/MyDogfood/static/media/logo-phone.51cbd71440eaa90946070b8848c12129.svg",
+    "static/media/logo-vk.svg": "/MyDogfood/static/media/logo-vk.10a8eaae72b1edd421b5bc7a6c31d978.svg",
+    "static/media/delivery.svg": "/MyDogfood/static/media/delivery.7b8634da6632f6eb8eba1207c1c07586.svg",
+    "static/media/loupe.svg": "/MyDogfood/static/media/loupe.4c69a8d32fd282582d66d1ff6c8cd917.svg",
+    "static/media/heart.svg": "/MyDogfood/static/media/heart.7d0dc723c4728cf6f8b36dcc55cfd2a4.svg",
+    "static/media/logo-telegram.svg": "/MyDogfood/static/media/logo-telegram.124803772b93c360fe68c6af8895c56d.svg",
+    "index.html": "/MyDogfood/index.html",
+    "static/media/basket.svg": "/MyDogfood/static/media/basket.b3d22710863f40a39594fb6c3a3877ac.svg",
+    "main.44997f73.css.map": "/MyDogfood/static/css/main.44997f73.css.map",
+    "main.2d65af5a.js.map": "/MyDogfood/static/js/main.2d65af5a.js.map"
   },
   "entrypoints": [
     "static/css/main.44997f73.css",
-    "static/js/main.82c38263.js"
+    "static/js/main.2d65af5a.js"
   ]
 }
