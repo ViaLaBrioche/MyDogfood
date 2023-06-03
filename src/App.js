@@ -13,6 +13,7 @@ import './pages/NotFoundPage/notFound.css'
 import { FavoriteProductPage } from './pages/FavoriteProductPage/FavoriteProductPage';
 import { UserContext } from './context/Context';
 
+
 function App() {
 
   const config = {
