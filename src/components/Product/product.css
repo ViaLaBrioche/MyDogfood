@@ -1,0 +1,106 @@
+.product__btn__back, .product__articul {
+    margin-top: 7%;
+    background: none;
+    border: none;
+    color: #7B8E98;
+}
+
+.product__btn__back {
+    cursor: pointer;
+}
+
+.product__container_img_active {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product__image {
+    height: 30%;
+    width: 50%;
+}
+
+
+.product__container__btns {
+    display: flex;
+    gap: 1em;
+}
+
+.product__container__active {
+    display: flex;
+    flex-direction: column;
+}
+
+.product__favorite__container {
+    display: flex;
+}
+
+.product__delivery, .product__quality {
+    display: flex;
+    padding: 1em;
+    gap: 1em;
+    border-radius: 12px;
+    background-color: rgba(236, 239, 241, 0.5);
+}
+
+.product__info_text {
+    margin-top: -1em;
+}
+
+.product__quality {
+    margin-top: 1em;
+}
+
+#counter {
+    height: 95%;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 0.5px solid #7B8E98; 
+    border-radius: 15px;
+
+}
+
+.counter__btns {
+    border: none;
+    height: 1em;
+    width: 1em;
+    background-color: rgb(255, 255, 255, 0);
+    cursor: pointer;
+}
+
+#counter input {
+    height: max-content;
+    width: max-content;
+    font-size: 1.5em;
+}
+
+.button__count__minus {
+    margin-top: -0.1em;
+}
+
+.product__busket__btn {
+    background: #FFE44D;
+    border-radius: 55px;
+    border: none;
+    height: 3em;
+    width: 100%;
+    cursor: pointer;
+}
+
+.product__favorite__btn {
+    border: none;
+    background: white;
+    color: #7B8E98;
+    cursor: pointer;
+}
+
+.product__favorite__icon {
+    cursor: pointer;
+    fill: white;
+}
+
+.product__favorite__icon_like {
+    cursor: pointer;
+    fill: rgb(196, 12, 12);
+}

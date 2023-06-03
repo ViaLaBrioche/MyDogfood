@@ -1,0 +1,112 @@
+[
+	{
+		"available": true,
+		"picture": "https://www.hundsfutter.eu/wp-content/uploads/2020/03/Hundekauknochen-vegan-hypoallergen-gesund-unverpackt-von-hundsfutter-768x512.jpg",
+		"name": "Хрустящие, веганские жевательные кости для собак из спельты",
+		"price": 2000,
+		"discount": 10,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H226b4bb61e254b1582d48954d9520079d.jpg_960x960.jpg",
+		"name": "Снэки в форме куриных ножек из курятины",
+		"price": 1500,
+		"discount": 10,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/A3b530b7aaa2f417d882af881af26adc5w.jpg_960x960.jpg",
+		"name": "Закуска с высоким содержанием белка из говядины",
+		"price": 1700,
+		"discount": 0,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H36c87c01deaf4636af8cbf93b0a44c15s.jpg_960x960.jpg",
+		"name": "Закуска из мяса птицы в форме косточек",
+		"price": 1200,
+		"discount": 0,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H320e3052cc2a4483bde138a9b8ca6ac7C.jpg_960x960.jpg",
+		"name": "Закуска \"Белые узелки\" с мраморным лососем",
+		"price": 800,
+		"discount": 0,
+		"stock": 10,
+		"wight": "100 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H7fd7b0cb5a1c4a078ec765ea8f002558O.jpg_960x960.jpg",
+		"name": "Снэки из цеплят и риса",
+		"price": 1500,
+		"discount": 0,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H7b445bf21b1a41d19e62e20b4da0b85fq.jpg_960x960.jpg",
+		"name": "Вяленая куриная грудка с ароматом утки",
+		"price": 1800,
+		"discount": 15,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H0c17eea89ca8471ba6b91bab66339d64R.jpg_960x960.jpg",
+		"name": "Печенье для собак с курицей и сушеной рыбой",
+		"price": 1800,
+		"discount": 15,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H888232e1a4e646c08e59b2231fae97a2W.jpg_960x960.jpg",
+		"name": "Лакомство для собак из курицы и мяса кролика",
+		"price": 2000,
+		"discount": 20,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	},
+
+	{
+		"available": true,
+		"picture": "https://s.alicdn.com/@sc04/kf/H88b7c0f0c4704f0ba369cae2879bce33R.jpg_960x960.jpg",
+		"name": "Закуска для собак сосиски из говядины",
+		"price": 2000,
+		"discount": 20,
+		"stock": 10,
+		"wight": "500 г",
+		"description": "Лакомство для собак"
+	}
+
+]
+
