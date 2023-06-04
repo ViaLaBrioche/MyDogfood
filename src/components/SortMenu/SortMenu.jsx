@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
+import { CardsContext } from '../../context/Context';
 
-export const SortMenu = ({cards, setCards}) => {
+export const SortMenu = ({setCards}) => {
+
+    const {cards} = useContext(CardsContext)
     const [btnTarget, setBtnTarget] = useState(null)
+
 
     const productRate = (reviews) => {
         if (!reviews || !reviews.length) {

@@ -10,12 +10,15 @@ import { UserContext } from "../../context/Context";
 
 
 export const Product = ({product, id}) => {
-    const user = useContext(UserContext)
+
+    const {user} = useContext(UserContext)
+    const [counter, setCounter] = useState(0);
+    
     const config = {
         baseUrl: 'https://api.react-learning.ru/'
         };
     const api = new Api(config);
-    const [counter, setCounter] = useState(0);
+    
 
     const addAlert = () => {
         if (counter === 0 ) {

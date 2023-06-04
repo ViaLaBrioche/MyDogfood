@@ -6,8 +6,12 @@ import { Search } from '../Header/Search/Search.jsx'
 import React from 'react'
 import './header.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react'
+import { CardsContext } from '../../context/Context'
 
-export const Header = ({setSearchTerm, favoritesCards}) => {
+export const Header = ({setSearchTerm}) => {
+
+    const {favoritesCards} = useContext(CardsContext)
 
     function AmountSearch({favoritesCards}) {
         const isAmount = favoritesCards.length;
@@ -26,7 +30,7 @@ export const Header = ({setSearchTerm, favoritesCards}) => {
                         <Search setSearchTerm={setSearchTerm}/>
                         <div className="header__icons">
                             <div className='header__heart__icon__conteiner'>
-                            <Link to="/favorite">
+                            <Link to="/favorites">
                                 <IconHeart/>
                                 <AmountSearch favoritesCards={favoritesCards}/>
                             </Link>

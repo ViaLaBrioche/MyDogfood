@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { Header } from './components/Header/Header';
 import './components/CardList/main.css'
@@ -10,8 +10,9 @@ import { CatalogPage } from './pages/CatalogPage/CatalogPage'
 import { ProductPage } from './pages/ProductPage/ProductPage'
 import { NotFound } from './pages/NotFoundPage/NotFound'
 import './pages/NotFoundPage/notFound.css'
-import { FavoriteProductPage } from './pages/FavoriteProductPage/FavoriteProductPage';
+import { FavoritesProductPage } from './pages/FavoritesProductPage/FavoritesProductPage';
 import { UserContext } from './context/Context';
+import { CardsContext } from './context/Context';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
   const [cards, setCards] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [user, setUser] = useState({});
-  const [favoriteCards, setFavoriteCards] = useState([])
+  const [favoritesCards, setfavoritesCards] = useState([])
 
 
   const  filterCards = (searchText, cards) => {
@@ -36,7 +37,7 @@ function App() {
   )
 };
 
-const filterFavorite = (cards, id) => {
+const filterfavorites = (cards, id) => {
   const newCards = cards.filter((e) => e.likes.includes(id))
   return newCards      
 }
@@ -51,7 +52,7 @@ const filterFavorite = (cards, id) => {
         item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
       setUser(userData)
       setCards(filterCards(searchTerm, cards))
-      setFavoriteCards(filterFavorite(cards, userData._id))
+      setfavoritesCards(filterfavorites(cards, userData._id))
       return
     })
     .catch((error) => {
@@ -63,22 +64,33 @@ const filterFavorite = (cards, id) => {
 
 },[searchTerm]);
 
+  const contextUser = {
+    user: user,
+  }
+
+  const contextCards= {
+    favoritesCards: favoritesCards,
+    cards: cards,
+    searchTerm: searchTerm,
+  }
 
   return (
-  <UserContext.Provider value={user}>
-    <div className="App">
-      <Header favoritesCards={favoriteCards} setSearchTerm={setSearchTerm}/>
-    <div className='main__container'>
-        <Routes>
-          <Route path="/my_dogfood" element={<CatalogPage setCards={setCards} cards={cards} searchTerm={searchTerm}/>} />
-          <Route path="/product/:id" element={<ProductPage/>} />
-          <Route path="/favorite" element={<FavoriteProductPage userId={user._id} favoriteCards={favoriteCards} />}/>
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-    </div>
-    <Footer/>
-    </div>
-  </UserContext.Provider>
+  <CardsContext.Provider value={contextCards}>
+    <UserContext.Provider value={contextUser}>
+      <div className="App">
+        <Header favoritesCards={favoritesCards} setSearchTerm={setSearchTerm}/>
+      <div className='main__container'>
+          <Routes>
+            <Route path="/my_dogfood" element={<CatalogPage setCards={setCards}/>} />
+            <Route path="/product/:id" element={<ProductPage/>} />
+            <Route path="/favorites" element={<FavoritesProductPage />}/>
+            <Route path="*" element={<NotFound/>}/>
+          </Routes>
+      </div>
+      <Footer/>
+      </div>
+    </UserContext.Provider>
+  </CardsContext.Provider>
   );
 }
 

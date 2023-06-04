@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ReactComponent as IconHeart } from './Icons/heart.svg'
 import { Api } from "../Api/Api";
 import { useContext } from "react";
@@ -7,10 +7,12 @@ import { UserContext } from "../../context/Context";
 
 
 export const Card = ({name, likes, product, price,wight,pictures,_id, discount}) => {
-    const user = useContext(UserContext)
+    const {user} = useContext(UserContext)
+
     const config = {
         baseUrl: 'https://api.react-learning.ru/'
-        };
+    };
+
     const api = new Api(config);
 
     const isLiked = likes.some((e)=> e === user._id)

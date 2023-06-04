@@ -4,7 +4,7 @@ import { Api } from "../../components/Api/Api";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 
-export const ProductPage = ({userId}) => {
+export const ProductPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({})
     
@@ -23,5 +23,5 @@ useEffect(() => {
 }
     },[id]);
     
-        return <Product id={id} userId={userId} product={product}/>
+        return <Product id={id} product={product}/>
 };
