@@ -25,7 +25,7 @@ function App() {
   const [cards, setCards] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [user, setUser] = useState({});
-  const [favoritesCards, setfavoritesCards] = useState([])
+  const [favoritesCards, setFavoritesCards] = useState([])
 
 
   const  filterCards = (searchText, cards) => {
@@ -42,6 +42,23 @@ const filterfavorites = (cards, id) => {
   return newCards      
 }
 
+    
+const toggleLike = (id, like) => api.toggleLike(id, like)
+  .then(toggleCard => {
+      
+      const updateCard = () => {
+        const newCards = cards.map((e) => e._id === toggleCard._id ? toggleCard : e)
+        setCards(newCards)
+        setFavoritesCards(filterfavorites(newCards, user._id))    
+    } 
+        updateCard()    
+    return
+  })
+  .catch(res=> {
+      return console.log(res, 'что-то сломалось')
+  });
+
+
 
   useEffect(() => {
     const Debounce = setTimeout(() => {
@@ -52,7 +69,8 @@ const filterfavorites = (cards, id) => {
         item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
       setUser(userData)
       setCards(filterCards(searchTerm, cards))
-      setfavoritesCards(filterfavorites(cards, userData._id))
+      setFavoritesCards(filterfavorites(cards, userData._id)
+      )
       return
     })
     .catch((error) => {
@@ -66,12 +84,14 @@ const filterfavorites = (cards, id) => {
 
   const contextUser = {
     user: user,
+    toggleLike,
   }
 
   const contextCards= {
     favoritesCards: favoritesCards,
     cards: cards,
     searchTerm: searchTerm,
+
   }
 
   return (

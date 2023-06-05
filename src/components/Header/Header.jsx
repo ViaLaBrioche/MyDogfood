@@ -15,7 +15,6 @@ export const Header = ({setSearchTerm}) => {
 
     function AmountSearch({favoritesCards}) {
         const isAmount = favoritesCards.length;
-        console.log(favoritesCards.length)
         if (!!isAmount) {
             return  <div className='header__heart__favorite__amount'>{favoritesCards.length}</div>
         } else {

@@ -4,21 +4,22 @@ import { ReactComponent as IconHeart } from './Icons/heart.svg'
 import { ReactComponent as IconDelivery } from './Icons/delivery.svg'
 import { ReactComponent as IconQuality } from './Icons/quality.svg'
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
-import { Api } from "../Api/Api";
+import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
 
 
 export const Product = ({product, id}) => {
-
-    const {user} = useContext(UserContext)
+    const discount = product.price / 100 * product.discount;
+    const {user, toggleLike} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
-    
-    const config = {
-        baseUrl: 'https://api.react-learning.ru/'
-        };
-    const api = new Api(config);
-    
+    const [like, setLike] = useState();
+
+    console.log(product, 'p.p')
+
+    useEffect(() => {
+        const isLike = product.likes.includes(user._id)
+        setLike(isLike)
+    }, [product.likes, user]);
 
     const addAlert = () => {
         if (counter === 0 ) {
@@ -31,14 +32,7 @@ export const Product = ({product, id}) => {
         return
     }
 
-    const toggleLike = (id, isLiked) => api.toggleLike(id, isLiked)
-    .then(res => {
-        console.log(res, 'togglelike', isLiked)
-        return
 
-});
-
-const discount = product.price / 100 * product.discount
 
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
@@ -59,7 +53,7 @@ const discount = product.price / 100 * product.discount
                     <button className="product__busket__btn">В корзину</button>
                 </div>
             <div className="product__favorite__container"  onClick={()=>{toggleLike(id, product.likes.includes(user._id))}}>
-                <IconHeart className={`"product__favorite__icon" ${product.likes ? "product__favorite__icon_like" : ""}`}/>
+                <IconHeart className={like ? "product__favorite__icon_like" : "product__favorite__icon"}/>
                 <button className="product__favorite__btn">В избранное</button>
             </div>
             <div className="product__info__container">

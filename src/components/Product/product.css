@@ -97,10 +97,12 @@
 
 .product__favorite__icon {
     cursor: pointer;
-    fill: white;
+    fill: #ffffff;
+    stroke: #000000;
 }
 
 .product__favorite__icon_like {
     cursor: pointer;
-    fill: rgb(196, 12, 12);
+    fill: #F44336;
+    stroke: #F44336;
 }

@@ -1,26 +1,19 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { ReactComponent as IconHeart } from './Icons/heart.svg'
-import { Api } from "../Api/Api";
 import { useContext } from "react";
 import { UserContext } from "../../context/Context";
 
 
-export const Card = ({name, likes, product, price,wight,pictures,_id, discount}) => {
-    const {user} = useContext(UserContext)
+export const Card = ({name, likes, price,wight,pictures,_id, discount}) => {
 
-    const config = {
-        baseUrl: 'https://api.react-learning.ru/'
-    };
+    const {user, toggleLike} = useContext(UserContext)
+    const like = likes.includes(user._id)
 
-    const api = new Api(config);
-
-    const isLiked = likes.some((e)=> e === user._id)
-
-    
-    function Price(discount) {
-        const isDiscount = discount.discount;
-        if (!!isDiscount) {
+    function Price(props) {
+        console.log()
+        const isDiscount = props.disc;
+            if (!!isDiscount) {
             return <div><div className="item__price__discount" >{price}&nbsp;₽</div>
             <div className="item__price item__price_red">{price-(price / 100 * isDiscount)}&nbsp;₽</div></div>
         } else {
@@ -33,11 +26,11 @@ export const Card = ({name, likes, product, price,wight,pictures,_id, discount})
             {!!discount && <div className="card__discount"> 
                         <span className='card__discount'>-{discount}%</span>
                     </div>}
-                    <button className="card__favorite__btn"><IconHeart className={isLiked ? "card__favorite_heart_like" : "card__favorite_heart"}/></button>
+                    <button onClick={()=> toggleLike(_id, like) } className="card__favorite__btn"><IconHeart className={like ? "card__favorite_heart_like" : "card__favorite_heart"}/></button>
             </div>
             <Link className="card__link" to={`/product/${_id}`}>
-                    <img src={pictures} alt="description of image" className='card__image'></img>
-                <Price discount={discount}/>
+                    <img src={pictures} className='card__image'></img>
+                <Price disc={discount} />
                 <div className="item__info">
                     <span className="item__wight">{wight}</span>
                     <span className="item__name">{name}</span>
