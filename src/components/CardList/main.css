@@ -161,3 +161,30 @@ border-radius: 12px;
     fill: #ffffff;
     stroke: #000000;
 }
+
+
+.favorites__null__items__container {
+    display: flex;
+    margin-top: 10%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorites__null__items__container button {
+    cursor: pointer;
+    width: 115px;
+    height: 40px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    border: rgba(123, 142, 152, 0.5) solid 2px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.favorites__null__items__container p {
+    color: #7B8E98;
+
+}
+
