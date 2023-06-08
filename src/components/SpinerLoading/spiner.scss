@@ -1,0 +1,60 @@
+
+$width: 100px;
+$height: $width; 
+$border: 26px; 
+$duration: 1s; 
+$repetition: infinite;
+
+.loader {
+  display: block;
+  width: $width;
+  height: $height;
+  position: relative;
+  transform-origin: ($width+$border)/2  ($height+$border)/2;
+  animation: spin $duration $repetition linear;
+  left: 50%;
+  top: 50%;
+  
+  .spinner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-width: 0px 0px $border $border;
+    border-style: solid;
+    border-color: transparent;
+    
+    &.yellow {
+      border-left-color: #ffff99;
+    }
+    &.orange {
+      border-left-color: #ffcc66;
+      transform: rotate(-45deg);
+    }
+    &.red {
+      border-left-color: #f9ea26;
+      transform: rotate(-90deg);
+    }
+    &.pink {
+      border-left-color: #ffe44d;
+      transform: rotate(-135deg);
+    }
+    &.violet {
+      border-left-color: #fbff00;
+      transform: rotate(-180deg);
+    }
+    &.mauve {
+      border-left-color: #ffe44d;
+      transform: rotate(-225deg);
+    }
+    &.light-yellow {
+      border-left-color: #fffad5;
+      transform: rotate(-270deg);
+    }
+  }
+}
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }

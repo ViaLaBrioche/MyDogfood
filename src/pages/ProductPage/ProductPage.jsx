@@ -4,6 +4,7 @@ import { Api } from "../../components/Api/Api";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import { CardsContext } from "../../context/Context";
+import { SpinerLoading } from "../../components/SpinerLoading/Spiner";
 
 export const ProductPage = () => {
     const cards = useContext(CardsContext)
@@ -29,8 +30,8 @@ export const ProductPage = () => {
 return (
     <>
         {!!Object.keys(product).length ?
-            <Product product={product} id={id}  />
-            :
-            <div>Loading...</div>}
+            <Product product={product} id={id} />
+            : <SpinerLoading/>
+           } 
     </>
 )}

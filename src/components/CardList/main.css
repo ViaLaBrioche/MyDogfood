@@ -153,6 +153,8 @@ border-radius: 12px;
     cursor: pointer;
     fill: #F44336;
     stroke: #F44336;
+    transition-duration: 0.3s;
+
 
 }
 
@@ -160,6 +162,7 @@ border-radius: 12px;
     cursor: pointer;
     fill: #ffffff;
     stroke: #000000;
+    transition-duration: 0.3s;
 }
 
 

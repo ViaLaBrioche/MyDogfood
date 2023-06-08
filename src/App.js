@@ -11,8 +11,9 @@ import { ProductPage } from './pages/ProductPage/ProductPage'
 import { NotFound } from './pages/NotFoundPage/NotFound'
 import './pages/NotFoundPage/notFound.css'
 import { FavoritesProductPage } from './pages/FavoritesProductPage/FavoritesProductPage';
-import { UserContext } from './context/Context';
+import { ModalContext, UserContext } from './context/Context';
 import { CardsContext } from './context/Context';
+import { Modal } from './components/Modal/Modal';
 
 
 function App() {
@@ -26,6 +27,18 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [user, setUser] = useState({});
   const [favoritesCards, setFavoritesCards] = useState([])
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+  const openModal = () => {
+    setModalIsOpen(true);
+    console.log(modalIsOpen, 'ya')
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
 
 
   const  filterCards = (searchText, cards) => {
@@ -88,30 +101,38 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
   }
 
   const contextCards= {
+    openModal,
     favoritesCards: favoritesCards,
     cards: cards,
     searchTerm: searchTerm,
+  }
 
+  const contextModal = {
+    closeModal,
+    modalIsOpen,
   }
 
   return (
-  <CardsContext.Provider value={contextCards}>
-    <UserContext.Provider value={contextUser}>
-      <div className="App">
-        <Header favoritesCards={favoritesCards} setSearchTerm={setSearchTerm}/>
-      <div className='main__container'>
-          <Routes>
-            <Route path="/my_dogfood" element={<CatalogPage setCards={setCards}/>} />
-            <Route path="/product/:id" element={<ProductPage/>} />
-            <Route path="/favorites" element={<FavoritesProductPage />}/>
-            <Route path="*" element={<NotFound/>}/>
-          </Routes>
-      </div>
-      <Footer/>
-      </div>
-    </UserContext.Provider>
-  </CardsContext.Provider>
-  );
+  <ModalContext.Provider value={contextModal}>  
+    <CardsContext.Provider value={contextCards}>
+      <UserContext.Provider value={contextUser}>
+        <div className="App">
+          <Header favoritesCards={favoritesCards} setSearchTerm={setSearchTerm}/>
+        <div className='main__container'>
+            <Routes>
+              <Route path="/my_dogfood" element={<CatalogPage setCards={setCards}/>} />
+              <Route path="/product/:id" element={<ProductPage/>} />
+              <Route path="/favorites" element={<FavoritesProductPage />}/>
+              <Route path="*" element={<NotFound/>}/>
+            </Routes>
+          <Modal modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+        </div>
+        <Footer/>
+        </div>
+      </UserContext.Provider>
+    </CardsContext.Provider>
+  </ModalContext.Provider> 
+    );
 }
 
 export default App;

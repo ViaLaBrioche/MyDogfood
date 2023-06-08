@@ -11,16 +11,9 @@ import { CardsContext } from '../../context/Context'
 
 export const Header = ({setSearchTerm}) => {
 
-    const {favoritesCards} = useContext(CardsContext)
+    const {favoritesCards, openModal} = useContext(CardsContext)
+    const isAmount = favoritesCards.length;
 
-    function AmountSearch({favoritesCards}) {
-        const isAmount = favoritesCards.length;
-        if (!!isAmount) {
-            return  <div className='header__heart__favorite__amount'>{favoritesCards.length}</div>
-        } else {
-            return null
-        }
-    }
 
     return <header>
                 <div className="main__container">
@@ -31,11 +24,11 @@ export const Header = ({setSearchTerm}) => {
                             <div className='header__heart__icon__conteiner'>
                             <Link to="/favorites">
                                 <IconHeart/>
-                                <AmountSearch favoritesCards={favoritesCards}/>
+                                {!!isAmount && <div className='header__heart__favorite__amount'>{favoritesCards.length}</div>}
                             </Link>
                             </div>
                         <IconBasket/>
-                        <IconDog/>
+                        <IconDog onClick={()=> openModal()}/>
                         </div>
                     </div>
                 </div>

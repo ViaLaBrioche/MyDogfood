@@ -99,10 +99,12 @@
     cursor: pointer;
     fill: #ffffff;
     stroke: #000000;
+    transition-duration: 0.3s;
 }
 
 .product__favorite__icon_like {
     cursor: pointer;
     fill: #F44336;
     stroke: #F44336;
+    transition-duration: 0.3s;
 }
