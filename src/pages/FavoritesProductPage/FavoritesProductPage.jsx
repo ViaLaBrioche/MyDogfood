@@ -5,19 +5,14 @@ import { FavoritesCardList } from "../../components/FavoritesCards/FavoritesCard
 import { FavoritesNullItems } from "../../components/FavoritesCards/FavoritesNullItems";
 import { SpinerLoading } from "../../components/SpinerLoading/Spiner";
 
-
 export const FavoritesProductPage = () => {
     
     const {favoritesCards} = useContext(CardsContext)
-    console.log({favoritesCards}, 'obj')
-    console.log(favoritesCards, 'array')
 
-    const asyncFunction = () => {}
-    
     return <>
-        {!!favoritesCards.length ?
-        <FavoritesCardList/>
+       {!!favoritesCards.length ?
+        <FavoritesCardList/> 
         :
-        <FavoritesNullItems/>}
+        <FavoritesNullItems />}
         </>
 }

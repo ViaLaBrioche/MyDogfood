@@ -5,7 +5,7 @@ import { CardsContext } from '../../context/Context';
 export const SortMenu = ({setCards}) => {
 
     const {cards} = useContext(CardsContext)
-    const [btnTarget, setBtnTarget] = useState(null)
+    const [btnTarget, setBtnTarget] = useState("")
 
 
     const productRate = (reviews) => {
@@ -60,11 +60,11 @@ export const SortMenu = ({setCards}) => {
     }
 
     return <div className="sort__menu__container">
-        <button name="popular" type="button" onClick={(e)=> SortPopular(e.target.name, cards) } className={btnTarget === "popular" ? 'sort__menu__btn current' : 'sort__menu__btn'}>Популярные</button>
-        <button name="new" type="button" onClick={(e) => SortNew(e.target.name, cards)}  className={btnTarget === "new" ? 'sort__menu__btn current' : 'sort__menu__btn'}>Новинки</button>
-        <button name="cheap" type="button" onClick={(e) => SortCheap(e.target.name, cards)}  className={btnTarget === "cheap" ? 'sort__menu__btn current' : 'sort__menu__btn'}>Сначала дешёвые</button>
-        <button name="expensive" type="button" onClick={(e) => SortExpensive(e.target.name, cards)} className={btnTarget === "expensive" ? 'sort__menu__btn current' : 'sort__menu__btn'}>Сначала дорогие</button>
-        <button name="rate" type="button" onClick={(e) => SortRate(e.target.name, cards)}  className={btnTarget === "rate" ? 'sort__menu__btn current' : 'sort__menu__btn'}>По рейтингу</button>
-        <button name="discount" type="button" onClick={(e) => SortDiscount(e.target.name, cards)}  className={btnTarget === "discount" ? 'sort__menu__btn current' : 'sort__menu__btn'}>По скидке</button>
+        <button name="popular" type="button" onClick={(e)=> SortPopular(e.target.name, cards) } className={`sort__menu__btn ${btnTarget === "popular" && 'current'}`}>Популярные</button>
+        <button name="new" type="button" onClick={(e) => SortNew(e.target.name, cards)}  className={`sort__menu__btn ${btnTarget === "new" && 'current'}`}>Новинки</button>
+        <button name="cheap" type="button" onClick={(e) => SortCheap(e.target.name, cards)}  className={`sort__menu__btn ${btnTarget === "cheap" && 'current'}`}>Сначала дешёвые</button>
+        <button name="expensive" type="button" onClick={(e) => SortExpensive(e.target.name, cards)} className={`sort__menu__btn ${btnTarget === "expensive" && 'current'}`}>Сначала дорогие</button>
+        <button name="rate" type="button" onClick={(e) => SortRate(e.target.name, cards)}  className={`sort__menu__btn ${btnTarget === "rate" && 'current'}`}>По рейтингу</button>
+        <button name="discount" type="button" onClick={(e) => SortDiscount(e.target.name, cards)}  className={`sort__menu__btn ${btnTarget === "discount" && 'current'}`}>По скидке</button>
     </div>
 }

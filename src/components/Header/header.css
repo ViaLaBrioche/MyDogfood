@@ -51,6 +51,9 @@ header .main__container .header__container {
     outline: none;
 }
 
+.header__logo_mini {
+    display: none;
+}
 
 .main__container {
     display: flex;
@@ -76,4 +79,14 @@ header .main__container .header__container {
     background-color: #01A54E;
     color: #ffff;
     text-align: center;
+}
+
+
+@media (max-width: 480px) {
+    .header__logo {
+        display: none;
+    }
+    .header__logo_mini {
+        display: inline;
+    }
 }

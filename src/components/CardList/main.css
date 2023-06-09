@@ -5,27 +5,31 @@ button {
 .sort__menu__container {
 display: flex;
 align-items: flex-start;
-padding: 12px 16px;
+height: 3em;
 gap: 16px;
 box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 112, 0.16);
 border-radius: 12px;
 }
 
 .sort__menu__btn {
+    margin-left: 1em;
     white-space: normal;
     border: none;
+    height: 100%;
     background-color: #ffff;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     color: #7B8E98;
+    border-radius: 0.5em;
 }
 
 .cards__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
     margin-top: 40px;
+    min-width: 480px;
 }
 
 .card {
@@ -33,8 +37,8 @@ border-radius: 12px;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    padding: 2%;
     border-radius: 5%;
+    flex: 0 1;
 }
 
 .card__image {
@@ -135,10 +139,14 @@ border-radius: 12px;
 
 .sort__menu__btn:hover {
     color: #1A1A1A;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
 }
 
 .current {
     color: #1A1A1A;
+    border: 1px, solid, #1A1A1A;
+    box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
 }
 
 .favorite__btn__back {
@@ -191,3 +199,8 @@ border-radius: 12px;
 
 }
 
+@media (max-width: 480px) {
+    .main__container {
+        margin: 0px 0px 0px 10px;
+    }
+}
