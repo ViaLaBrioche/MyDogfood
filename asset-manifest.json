@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/MyDogfood/static/css/main.3f42c63d.css",
-    "main.js": "/MyDogfood/static/js/main.0f4f90bf.js",
+    "main.css": "/MyDogfood/static/css/main.2515a94c.css",
+    "main.js": "/MyDogfood/static/js/main.95f09996.js",
     "static/media/logoFooter.svg": "/MyDogfood/static/media/logoFooter.59bf6987ce5ad7a30c6f6d1b45a5226d.svg",
     "static/media/logoDogo.svg": "/MyDogfood/static/media/logoDogo.dda4d76b73ae669e8e4e16869937b992.svg",
     "static/media/quality.svg": "/MyDogfood/static/media/quality.f9c357b52bd41495be48401818180b35.svg",
+    "static/media/logoDogoMini.svg": "/MyDogfood/static/media/logoDogoMini.fc80cc0beb5db2847dcec4cb213297f4.svg",
     "static/media/logo-instagram.svg": "/MyDogfood/static/media/logo-instagram.ee343c224c183f85022c39390295aaf3.svg",
     "static/media/logo-viber.svg": "/MyDogfood/static/media/logo-viber.95bf959b6838dfc9b21e37f2857111b4.svg",
     "static/media/dog.svg": "/MyDogfood/static/media/dog.f7c59a99facb6bd97b24953d94acd57a.svg",
@@ -17,11 +18,11 @@
     "static/media/logo-telegram.svg": "/MyDogfood/static/media/logo-telegram.124803772b93c360fe68c6af8895c56d.svg",
     "index.html": "/MyDogfood/index.html",
     "static/media/basket.svg": "/MyDogfood/static/media/basket.b3d22710863f40a39594fb6c3a3877ac.svg",
-    "main.3f42c63d.css.map": "/MyDogfood/static/css/main.3f42c63d.css.map",
-    "main.0f4f90bf.js.map": "/MyDogfood/static/js/main.0f4f90bf.js.map"
+    "main.2515a94c.css.map": "/MyDogfood/static/css/main.2515a94c.css.map",
+    "main.95f09996.js.map": "/MyDogfood/static/js/main.95f09996.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f42c63d.css",
-    "static/js/main.0f4f90bf.js"
+    "static/css/main.2515a94c.css",
+    "static/js/main.95f09996.js"
   ]
 }
