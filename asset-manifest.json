@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/MyDogfood/static/css/main.af7bc973.css",
+    "main.css": "/MyDogfood/static/css/main.53bb2367.css",
     "main.js": "/MyDogfood/static/js/main.0f4f90bf.js",
     "static/media/logoFooter.svg": "/MyDogfood/static/media/logoFooter.59bf6987ce5ad7a30c6f6d1b45a5226d.svg",
     "static/media/logoDogo.svg": "/MyDogfood/static/media/logoDogo.dda4d76b73ae669e8e4e16869937b992.svg",
@@ -17,11 +17,11 @@
     "static/media/logo-telegram.svg": "/MyDogfood/static/media/logo-telegram.124803772b93c360fe68c6af8895c56d.svg",
     "index.html": "/MyDogfood/index.html",
     "static/media/basket.svg": "/MyDogfood/static/media/basket.b3d22710863f40a39594fb6c3a3877ac.svg",
-    "main.af7bc973.css.map": "/MyDogfood/static/css/main.af7bc973.css.map",
+    "main.53bb2367.css.map": "/MyDogfood/static/css/main.53bb2367.css.map",
     "main.0f4f90bf.js.map": "/MyDogfood/static/js/main.0f4f90bf.js.map"
   },
   "entrypoints": [
-    "static/css/main.af7bc973.css",
+    "static/css/main.53bb2367.css",
     "static/js/main.0f4f90bf.js"
   ]
 }
