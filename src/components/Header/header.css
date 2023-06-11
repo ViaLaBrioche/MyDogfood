@@ -81,6 +81,10 @@ header .main__container .header__container {
     text-align: center;
 }
 
+.header__icon__auth, .header__icon__basket {
+    cursor: pointer;
+}
+
 
 @media (max-width: 480px) {
     .header__logo {

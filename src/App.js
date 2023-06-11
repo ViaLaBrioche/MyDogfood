@@ -14,6 +14,7 @@ import { FavoritesProductPage } from './pages/FavoritesProductPage/FavoritesProd
 import { ModalContext, UserContext } from './context/Context';
 import { CardsContext } from './context/Context';
 import { Modal } from './components/Modal/Modal';
+import { AuthorizationForm } from './components/AuthorizationForm/AuthorizationForm'
 
 
 function App() {
@@ -28,18 +29,36 @@ function App() {
   const [user, setUser] = useState({});
   const [favoritesCards, setFavoritesCards] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  
+  const [isForm, setIsForm] = useState()
 
 
   const openModal = () => {
+    setIsForm(<AuthorizationForm setIsForm={setIsForm}/>)
     setModalIsOpen(true);
-    console.log(modalIsOpen, 'ya')
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
   };
 
+  const authDataSubmit = (data) => {
+    console.log(data)
+    return  api.authorizationUser(data)
+    .then((res)=> {
+      console.log(res)
+      closeModal()
+    })
+}
 
+  const regDataSubmit = (data) => {
+    console.log(data)
+    return api.registrationUser(data)
+    .then((res)=> {
+      console.log(res)
+      closeModal()
+    })
+  }
 
   const  filterCards = (searchText, cards) => {
   if (!searchText) {
@@ -71,7 +90,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
       return console.log(res, 'что-то сломалось')
   });
 
-
+  api.getUserInfo()
 
   useEffect(() => {
     const Debounce = setTimeout(() => {
@@ -82,8 +101,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
         item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
       setUser(userData)
       setCards(filterCards(searchTerm, cards))
-      setFavoritesCards(filterfavorites(cards, userData._id)
-      )
+      setFavoritesCards(filterfavorites(cards, userData._id))
       return
     })
     .catch((error) => {
@@ -108,8 +126,11 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
   }
 
   const contextModal = {
+    openModal,
     closeModal,
     modalIsOpen,
+    authDataSubmit,
+    regDataSubmit,
   }
 
   return (
@@ -125,7 +146,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
               <Route path="/favorites" element={<FavoritesProductPage />}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
-          <Modal modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+          <Modal isForm={isForm}/>
         </div>
         <Footer/>
         </div>

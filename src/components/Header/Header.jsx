@@ -28,8 +28,8 @@ export const Header = ({setSearchTerm}) => {
                                 {!!isAmount && <div className='header__heart__favorite__amount'>{favoritesCards.length}</div>}
                             </Link>
                             </div>
-                        <IconBasket/>
-                        <IconDog onClick={()=> openModal()}/>
+                        <IconBasket className="header__icon__basket"/>
+                        <IconDog className="header__icon__auth" onClick={()=>openModal()}/>
                         </div>
                     </div>
                 </div>

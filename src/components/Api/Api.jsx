@@ -1,8 +1,14 @@
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
 export class Api {
     constructor(config) {
         this.baseUrl = config.baseUrl;
     }
+
 
 
     getAllItems = () => {
@@ -26,32 +32,6 @@ export class Api {
             }); 
     };
 
-    // addLike = (id) => {
-    //     return fetch(`${this.baseUrl}products/likes/${id}`, { 
-    //         method: 'PUT',
-    //         headers: {
-    //         authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w',
-    //         },
-    //     })
-    //         .then(res => {
-    //         console.log(res)
-    //         return res.ok ? res.json() : Promise.reject('У меня лапки')
-    //         }); 
-    // };
-
-    // deleteLike = (id) => {
-    //     return fetch(`${this.baseUrl}products/likes/${id}`, { 
-    //         method: 'DELETE',
-    //         headers: {
-    //         authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w',
-    //         },
-    //     })
-    //         .then(res => {
-    //         console.log(res)
-    //         return res.ok ? res.json() : Promise.reject('У меня лапки')
-    //         }); 
-    // };
-
     getUserInfo = () => {
         return fetch(`${this.baseUrl}users/me`, {
             headers:  {
@@ -73,5 +53,38 @@ export class Api {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
             }); 
+    }
+
+    authorizationUser = (data) => {
+        return fetch(`${this.baseUrl}signin`,  {
+            method:  "POST",
+            body: JSON.stringify(data),
+            headers:  {
+                "Content-Type": "application/json",
+                },
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+
+    }
+
+    registrationUser = (data) => {
+        return fetch(`${this.baseUrl}signup`,  {
+            method:  "POST",
+            body: JSON.stringify({          
+                "group": "2222",
+                "name": `user${getRandomInt(100000, 999999)}`,
+                "password": data.password,
+                "email": data.email,
+            }),
+            headers:  {
+                "Content-Type": "application/json",
+                },
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+
     }
 }   
