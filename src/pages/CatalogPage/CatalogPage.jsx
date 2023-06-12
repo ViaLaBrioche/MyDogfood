@@ -5,9 +5,9 @@ import { SortMenu } from "../../components/SortMenu/SortMenu";
 import { useContext } from "react";
 import { CardsContext } from "../../context/Context";
 
-export const CatalogPage = ({setCards}) => {
+export const CatalogPage = () => {
 
-    const {cards, searchTerm} = useContext(CardsContext)
+    const {cards, setCards, searchTerm} = useContext(CardsContext)
 
     return <div><SortMenu setCards={setCards}/>
     <div>{!!searchTerm && <SearchResult />}</div>

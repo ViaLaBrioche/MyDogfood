@@ -5,10 +5,10 @@ import { ModalContext } from "../../context/Context";
 
 export const RegistrationForm = () => {
 
-    const {regDataSubmit, openModal} = useContext(ModalContext)
-    const { register, handleSubmit } = useForm()                                      
+        const {regDataSubmit, openModal} = useContext(ModalContext)
+        const { register, handleSubmit } = useForm()                                      
 
-    return  <form className="modal__form" onSubmit={handleSubmit(regDataSubmit)}>
+        return  <form className="modal__form" onSubmit={handleSubmit(regDataSubmit)}>
                 <h1>Регистрация</h1> 
                 <div className="form__input">
                         <input name="email" placeholder="Почта" type="text" {...register("email", { required: "Пожалуйста, укажите почту" })} />

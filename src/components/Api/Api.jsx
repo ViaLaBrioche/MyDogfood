@@ -10,11 +10,10 @@ export class Api {
     }
 
 
-
     getAllItems = () => {
         return fetch(`${this.baseUrl}products`, { 
             headers: {
-            authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w',
+            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w`,
             }})
             .then(res => {
             console.log(res)
@@ -24,7 +23,7 @@ export class Api {
     getProductById = (id) => {
         return fetch(`${this.baseUrl}products/${id}`, { 
             headers: {
-            authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w',
+            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w`,
             }})
             .then(res => {
             console.log(res)
@@ -35,7 +34,7 @@ export class Api {
     getUserInfo = () => {
         return fetch(`${this.baseUrl}users/me`, {
             headers:  {
-                authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w',
+                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 },
         }).then(res => {
             console.log(res)
@@ -47,7 +46,7 @@ export class Api {
         return fetch(`${this.baseUrl}products/likes/${id}`, {
             method:  isLiked ? "DELETE" : 'PUT',
             headers:  {
-                authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w',
+                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 },
         }).then(res => {
             console.log(res)
@@ -66,7 +65,6 @@ export class Api {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
             }); 
-
     }
 
     registrationUser = (data) => {
@@ -85,6 +83,20 @@ export class Api {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
             }); 
-
     }
+
+
+    resetPassword = (data) => {
+        return fetch(`${this.baseUrl}password-reset`, {
+            method:  "POST",
+            body: JSON.stringify(data),
+            headers:  {
+                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w`,
+                "Content-Type": "application/json",
+                },
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+        }
 }   

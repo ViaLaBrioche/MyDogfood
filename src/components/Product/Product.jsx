@@ -12,14 +12,12 @@ export const Product = ({product, id}) => {
     const discount = product.price / 100 * product.discount;
     const {user, toggleLike} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
-    const [like, setLike] = useState();
-
-    console.log(product, 'p.p')
+    const [like, setLike] = useState(false);
 
     useEffect(() => {
         const isLike = product.likes.includes(user._id)
         setLike(isLike)
-    }, [product.likes, user]);
+    }, [product, user]);
 
     const addAlert = () => {
         if (counter === 0 ) {
@@ -52,7 +50,7 @@ export const Product = ({product, id}) => {
                 </div>
                     <button className="product__busket__btn">В корзину</button>
                 </div>
-            <div className="product__favorite__container"  onClick={()=>{toggleLike(id, product.likes.includes(user._id))}}>
+            <div className="product__favorite__container"  onClick={()=>{toggleLike(id, like)}}>
                 <IconHeart className={like ? "product__favorite__icon_like" : "product__favorite__icon"}/>
                 <button className="product__favorite__btn">В избранное</button>
             </div>

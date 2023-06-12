@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import "../Modal/modal.scss"
 import { ModalContext } from "../../context/Context";
 import { RegistrationForm } from "../RegistrationForm/RegistrationForm"
-import { ResetPasswordForm } from "../resetPasswordForm/resetPasswordForm";
-export const AuthorizationForm = ({setIsForm}) => {
+import { ResetPasswordForm } from "../ResetPasswordForm/ResetPasswordForm";
 
-    const {authDataSubmit} = useContext(ModalContext)
+export const AuthorizationForm = () => {
+
+    const {authDataSubmit, setIsForm} = useContext(ModalContext)
     const { register, handleSubmit } = useForm({})                                      
 
     return  <form className="modal__form" onSubmit={handleSubmit(authDataSubmit)}>

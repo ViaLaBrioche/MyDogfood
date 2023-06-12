@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react'
 import { CardsContext } from '../../context/Context'
 
-export const Header = ({setSearchTerm}) => {
+export const Header = () => {
 
-    const {favoritesCards, openModal} = useContext(CardsContext)
+    const {favoritesCards, setSearchTerm, openModal} = useContext(CardsContext)
     const isAmount = favoritesCards.length;
 
 

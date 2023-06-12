@@ -15,6 +15,7 @@ import { ModalContext, UserContext } from './context/Context';
 import { CardsContext } from './context/Context';
 import { Modal } from './components/Modal/Modal';
 import { AuthorizationForm } from './components/AuthorizationForm/AuthorizationForm'
+import { UserInfo } from './components/UserInfo/UserInfo';
 
 
 function App() {
@@ -29,12 +30,15 @@ function App() {
   const [user, setUser] = useState({});
   const [favoritesCards, setFavoritesCards] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+  const [isAuthorized, setIsAuthorized] = useState(false) 
   const [isForm, setIsForm] = useState()
 
-
   const openModal = () => {
-    setIsForm(<AuthorizationForm setIsForm={setIsForm}/>)
+    if (!isAuthorized) {
+      setIsForm(<AuthorizationForm/>)
+    } else {
+      setIsForm(<UserInfo/>)}
+      
     setModalIsOpen(true);
   };
 
@@ -46,7 +50,8 @@ function App() {
     console.log(data)
     return  api.authorizationUser(data)
     .then((res)=> {
-      console.log(res)
+      setIsAuthorized(true)
+      localStorage.setItem('token', JSON.stringify(res.token))
       closeModal()
     })
 }
@@ -54,12 +59,26 @@ function App() {
   const regDataSubmit = (data) => {
     console.log(data)
     return api.registrationUser(data)
+
     .then((res)=> {
       console.log(res)
       closeModal()
     })
   }
 
+  const resetDataSubmit = (data) => {
+    console.log(data, 'reset')
+    return api.resetPassword(data)
+
+    .then((res)=> {
+      console.log(res)
+      closeModal()
+    })
+    .catch((res)=>{
+      console.log(res, 'ERR')
+    })
+  }
+  
   const  filterCards = (searchText, cards) => {
   if (!searchText) {
     return cards;
@@ -90,10 +109,19 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
       return console.log(res, 'что-то сломалось')
   });
 
-  api.getUserInfo()
+  useEffect(() => {
+  api.getAllItems()
+  .then((cardsData) => {
+    const cards = cardsData.products.filter(item => 
+      item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
+    setCards(filterCards(searchTerm, cards))
+    })
+},[])
+
 
   useEffect(() => {
     const Debounce = setTimeout(() => {
+
 
   Promise.all([api.getAllItems(), api.getUserInfo()])
     .then(([cardsData, userData]) => {
@@ -108,29 +136,39 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
         console.log(error)
     });
     }, 300);
-
   return () => clearTimeout(Debounce)
 
-},[searchTerm]);
+},[searchTerm, isAuthorized]);
+  
+  useEffect(()=>{
+    if(localStorage.getItem('token')) {
+      setIsAuthorized(true)
+    }
+  },[])
 
   const contextUser = {
-    user: user,
+    user,
     toggleLike,
   }
 
   const contextCards= {
+    setCards,
     openModal,
-    favoritesCards: favoritesCards,
-    cards: cards,
-    searchTerm: searchTerm,
+    setSearchTerm,
+    searchTerm,
+    favoritesCards,
+    cards,
   }
 
   const contextModal = {
+    setIsForm,
     openModal,
     closeModal,
-    modalIsOpen,
     authDataSubmit,
     regDataSubmit,
+    resetDataSubmit,
+    modalIsOpen,
+    isForm,
   }
 
   return (
@@ -138,15 +176,15 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
     <CardsContext.Provider value={contextCards}>
       <UserContext.Provider value={contextUser}>
         <div className="App">
-          <Header favoritesCards={favoritesCards} setSearchTerm={setSearchTerm}/>
+          <Header/>
         <div className='main__container'>
             <Routes>
-              <Route path="/my_dogfood" element={<CatalogPage setCards={setCards}/>} />
+              <Route path="/my_dogfood" element={<CatalogPage/>} />
               <Route path="/product/:id" element={<ProductPage/>} />
               <Route path="/favorites" element={<FavoritesProductPage />}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
-          <Modal isForm={isForm}/>
+            <Modal/>
         </div>
         <Footer/>
         </div>
