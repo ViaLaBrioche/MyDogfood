@@ -116,7 +116,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
       item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
     setCards(filterCards(searchTerm, cards))
     })
-},[])
+},[searchTerm])
 
 
   useEffect(() => {
