@@ -16,6 +16,7 @@ import { CardsContext } from './context/Context';
 import { Modal } from './components/Modal/Modal';
 import { AuthorizationForm } from './components/AuthorizationForm/AuthorizationForm'
 import { UserInfo } from './components/UserInfo/UserInfo';
+import { useNavigate } from 'react-router-dom';
 
 
 function App() {
@@ -32,14 +33,13 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false) 
   const [isForm, setIsForm] = useState()
+  const navUserPage = useNavigate()
 
   const openModal = () => {
     if (!isAuthorized) {
       setIsForm(<AuthorizationForm/>)
-    } else {
-      setIsForm(<UserInfo/>)}
-      
-    setModalIsOpen(true);
+      setModalIsOpen(true)}
+    else {navUserPage("/userInfo")}
   };
 
   const closeModal = () => {
@@ -169,6 +169,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
     resetDataSubmit,
     modalIsOpen,
     isForm,
+    isAuthorized,
   }
 
   return (
@@ -182,6 +183,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
               <Route path="/my_dogfood" element={<CatalogPage/>} />
               <Route path="/product/:id" element={<ProductPage/>} />
               <Route path="/favorites" element={<FavoritesProductPage />}/>
+              <Route path="/userInfo" element={<UserInfo/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
             <Modal/>

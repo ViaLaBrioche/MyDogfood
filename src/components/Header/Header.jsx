@@ -29,7 +29,7 @@ export const Header = () => {
                             </Link>
                             </div>
                         <IconBasket className="header__icon__basket"/>
-                        <IconDog className="header__icon__auth" onClick={()=>openModal()}/>
+                        <IconDog className="header__icon__auth" onClick={()=> openModal()}/>
                         </div>
                     </div>
                 </div>

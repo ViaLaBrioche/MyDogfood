@@ -4,6 +4,7 @@ import './userInfo.scss'
 
 
 export const UserInfo = () => {
+    
     const {user} = useContext(UserContext)
 
     return <div className="user__info__container">
