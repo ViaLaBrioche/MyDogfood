@@ -18,6 +18,7 @@ import { AuthorizationForm } from './components/AuthorizationForm/AuthorizationF
 import { useNavigate } from 'react-router-dom';
 import { UserInfoPage } from './pages/UserPage/UserInfoPage';
 import { SetUserInfo } from './components/UserInfo/SetUserInfo';
+import { TokenForResetPasswordForm } from './components/ResetPasswordForm/TokenForResetPasswordForm';
 
 
 function App() {
@@ -34,14 +35,16 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false) 
   const [isForm, setIsForm] = useState()
+
   const navigate = useNavigate()
 
   const setUserSubmit = (data) => {
     console.log(data)
     api.setUserInfo(data) 
     .then(()=> alert('Данные успешно изменены'))
-    navigate("/userInfo")
-    window.location.reload();
+    .then(()=> {
+      navigate("/userInfo")
+      window.location.reload()})
   }
 
 
@@ -62,9 +65,13 @@ function App() {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
-  const setAuthorizedPasswordSunmit = (data) => {
-    return (data)
+  
+  const getTokenDataSubmit = (data) => {
+      return  api.setPassword(data)
+      .then((res)=> {
+        localStorage.setItem('token', JSON.stringify(res.token))
+        closeModal()
+      })
   }
 
   const authDataSubmit = (data) => {
@@ -91,7 +98,8 @@ function App() {
 
     .then((res)=> {
       console.log(res)
-      closeModal()
+      alert("Пароль отправлен вам на почту!")
+      setIsForm(<TokenForResetPasswordForm/>)
     })
     .catch((res)=>{
       console.log(res, 'ERR')
@@ -174,7 +182,6 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
 
 
   const contextUser = {
-    setAuthorizedPasswordSunmit,
     setUserSubmit,
     toggleLike,
     logout,
@@ -182,6 +189,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
   }
 
   const contextCards= {
+    getTokenDataSubmit,
     setCards,
     openModal,
     setSearchTerm,
@@ -194,6 +202,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
     setIsForm,
     openModal,
     closeModal,
+    getTokenDataSubmit,
     authDataSubmit,
     regDataSubmit,
     resetDataSubmit,

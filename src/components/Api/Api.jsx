@@ -100,14 +100,15 @@ export class Api {
             }); 
         }
     
-    setPassword = (data, token) => {
-        return fetch(`${this.baseUrl}password-reset/${token}`, {
+    setPassword = (data) => {
+        return fetch(`${this.baseUrl}password-reset/${data.token}`, {
             method:  "PATCH",
             headers:  {
-                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                "password": data.password,
+            })
         }).then(res => {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')

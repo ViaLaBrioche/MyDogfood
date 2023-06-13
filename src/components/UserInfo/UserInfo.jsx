@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../context/Context";
-import {ReactComponent as Phone} from "./Icons/phone.svg"
-import {ReactComponent as Mail} from "./Icons/mail.svg"
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { ReactComponent as Phone } from "./Icons/phone.svg"
+import { ReactComponent as Mail } from "./Icons/mail.svg"
+import { Link, useNavigate } from "react-router-dom";
 import './userInfo.scss'
 
 

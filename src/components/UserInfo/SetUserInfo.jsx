@@ -8,7 +8,7 @@ import './userInfo.scss'
 export const SetUserInfo = () => {
 
     const {register, handleSubmit} = useForm({})
-    const {user, setUserSubmit, setAuthorizedPasswordSubmit, saveSetUserInfo} = useContext(UserContext)
+    const {user, setUserSubmit} = useContext(UserContext)
             
     return   <><Link className="favorite__btn__link" to="/userInfo">
                     <button className="favorite__btn__back">Назад</button></Link>

@@ -11,7 +11,7 @@ export const ResetPasswordForm = () => {
         return  <form className="modal__form" onSubmit={handleSubmit(resetDataSubmit)}>
                 <h1>Восстановление пароля</h1> 
                 <span>Для получения временного пароля необходимо ввести email, указанный при регистрации.</span>
-                <input name="email" placeholder="Почта" type="text" {...register("email", { required: "Пожалуйста, укажите почту" })} />
+                <input name="email" placeholder="Почта" type="text" {...register("email")} />
                 <span>Срок действия временного пароля 24 ч.</span>
                 <button type="submit" className="button__yellow">Отправить</button>
         </form>
