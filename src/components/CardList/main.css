@@ -1,5 +1,17 @@
+
 button {
     cursor: pointer;
+}
+
+.content {
+    height: 100%;
+	min-height: calc(100vh - 80px);
+}
+
+.main__container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 223px;
 }
 
 .sort__menu__container {
@@ -81,6 +93,7 @@ border-radius: 12px;
     display: flex;
     flex-direction: column;
 }
+
 
 .item__name {
     width: 216px;

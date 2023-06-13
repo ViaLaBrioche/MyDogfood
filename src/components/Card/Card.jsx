@@ -11,7 +11,6 @@ export const Card = ({name, likes, price,wight,pictures,_id, discount}) => {
     const like = likes.includes(user._id)
 
     function Price(props) {
-        console.log()
         const isDiscount = props.disc;
             if (!!isDiscount) {
             return <div><div className="item__price__discount" >{price}&nbsp;₽</div>

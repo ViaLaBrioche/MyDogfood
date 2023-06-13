@@ -55,12 +55,6 @@ header .main__container .header__container {
     display: none;
 }
 
-.main__container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 223px;
-}
-
 .header__heart__icon__conteiner {
     position: relative;
     Width: 20px;

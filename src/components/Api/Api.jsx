@@ -57,10 +57,10 @@ export class Api {
     authorizationUser = (data) => {
         return fetch(`${this.baseUrl}signin`,  {
             method:  "POST",
-            body: JSON.stringify(data),
             headers:  {
                 "Content-Type": "application/json",
-                },
+            },
+            body: JSON.stringify(data),
         }).then(res => {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
@@ -70,15 +70,15 @@ export class Api {
     registrationUser = (data) => {
         return fetch(`${this.baseUrl}signup`,  {
             method:  "POST",
+            headers:  {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({          
                 "group": "2222",
                 "name": `user${getRandomInt(100000, 999999)}`,
                 "password": data.password,
                 "email": data.email,
             }),
-            headers:  {
-                "Content-Type": "application/json",
-                },
         }).then(res => {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
@@ -89,11 +89,25 @@ export class Api {
     resetPassword = (data) => {
         return fetch(`${this.baseUrl}password-reset`, {
             method:  "POST",
-            body: JSON.stringify(data),
             headers:  {
                 authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w`,
                 "Content-Type": "application/json",
-                },
+            },
+            body: JSON.stringify(data)
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+        }
+
+        setUserInfo = (data) => {
+        return fetch('https://api.react-learning.ru/v2/2222/users/me', {
+            method: "PATCH",
+            headers: {
+                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         }).then(res => {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
