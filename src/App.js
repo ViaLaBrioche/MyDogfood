@@ -39,7 +39,6 @@ function App() {
   const navigate = useNavigate()
 
   const setUserSubmit = (data) => {
-    console.log(data)
     api.setUserInfo(data) 
     .then(()=> alert('Данные успешно изменены'))
     .then(()=> {
@@ -141,13 +140,14 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
 
 
   useEffect(() => {
-      const Debounce = setTimeout(() => {
-    !!isAuthorized &&
+    
+    const Debounce = setTimeout(() => {
+      !!isAuthorized &&
       Promise.all([api.getAllItems(), api.getUserInfo()])
       .then(([cardsData, userData]) => {
         const cards = cardsData.products.filter(item => 
           item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
-          setCards((searchTerm, cards))
+          setCards(filterCards(searchTerm, cards))
           setUser(userData) 
           setFavoritesCards(filterfavorites(cards, userData._id))
         return
@@ -162,6 +162,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
 
 
   useEffect(() => {
+    const Debounce = setTimeout(() => {
     !isAuthorized &&
     api.getAllItems()
     .then((cardsData) => {
@@ -169,7 +170,10 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
         item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
       setCards(filterCards(searchTerm, cards))
       setFavoritesCards(filterfavorites(cards))
+      return
       })
+    }, 300);
+    return () => clearTimeout(Debounce)
 },[searchTerm, isAuthorized])
 
 
