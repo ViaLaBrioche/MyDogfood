@@ -29,14 +29,22 @@
     flex-direction: column;
 }
 
-.user__info span {
-    margin-top: 30px;
-    color: #CFD8DC;
-}
 
-.user__info p {
-    font-weight: bold;
-    margin-left: 105px;
+.user__info  {
+    span {
+        margin-top: 30px;
+        color: #CFD8DC;
+    }
+    p {
+        font-weight: bold;
+        margin-left: 105px;
+    }
+    h2 {
+        color: #1a1a1a;
+    }
+    h3 {
+        color: #1a1a1a;
+    }
 }
 
 .user__btns {

@@ -15,8 +15,9 @@ import { ModalContext, UserContext } from './context/Context';
 import { CardsContext } from './context/Context';
 import { Modal } from './components/Modal/Modal';
 import { AuthorizationForm } from './components/AuthorizationForm/AuthorizationForm'
-import { UserInfo } from './components/UserInfo/UserInfo';
 import { useNavigate } from 'react-router-dom';
+import { UserInfoPage } from './pages/UserPage/UserInfoPage';
+import { SetUserInfo } from './components/UserInfo/SetUserInfo';
 
 
 function App() {
@@ -35,10 +36,14 @@ function App() {
   const [isForm, setIsForm] = useState()
   const navigate = useNavigate()
 
-  const setUserInfo = (data) => {
+  const setUserSubmit = (data) => {
+    console.log(data)
     api.setUserInfo(data) 
-    .then((res)=> console.log(res))
+    .then(()=> alert('Данные успешно изменены'))
+    navigate("/userInfo")
+    window.location.reload();
   }
+
 
   const logout = () => {
     localStorage.clear()
@@ -58,9 +63,14 @@ function App() {
     setModalIsOpen(false);
   };
 
+  const setAuthorizedPasswordSunmit = (data) => {
+    return (data)
+  }
+
   const authDataSubmit = (data) => {
     return  api.authorizationUser(data)
     .then((res)=> {
+      alert('Вход в личный кабинет выполнен')
       setIsAuthorized(true)
       localStorage.setItem('token', JSON.stringify(res.token))
       closeModal()
@@ -107,7 +117,6 @@ const filterfavorites = (cards, id) => {
     
 const toggleLike = (id, like) => api.toggleLike(id, like)
   .then(toggleCard => {
-      
       const updateCard = () => {
         const newCards = cards.map((e) => e._id === toggleCard._id ? toggleCard : e)
         setCards(newCards)
@@ -124,38 +133,37 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
 
 
   useEffect(() => {
-    
-    const Debounce = setTimeout(() => {
-
-  !!isAuthorized &&
-  Promise.all([api.getAllItems(), api.getUserInfo()])
-    .then(([cardsData, userData]) => {
-      const cards = cardsData.products.filter(item => 
-        item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
-        setCards((searchTerm, cards))
-        setUser(userData) 
-        setFavoritesCards(filterfavorites(cards, userData._id))
-      return
-    })
-    .catch((error) => {
-        console.log(error)
-    });
-    }, 300);
-  return () => clearTimeout(Debounce)
-
+      const Debounce = setTimeout(() => {
+    !!isAuthorized &&
+      Promise.all([api.getAllItems(), api.getUserInfo()])
+      .then(([cardsData, userData]) => {
+        const cards = cardsData.products.filter(item => 
+          item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
+          setCards((searchTerm, cards))
+          setUser(userData) 
+          setFavoritesCards(filterfavorites(cards, userData._id))
+        return
+      })
+      .catch((error) => {
+          console.log(error)
+      });
+      }, 300);
+    return () => clearTimeout(Debounce)
 },[searchTerm, isAuthorized]);
 
-  useEffect(() => {
 
-  !isAuthorized &&
-  api.getAllItems()
-  .then((cardsData) => {
-    const cards = cardsData.products.filter(item => 
-      item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
-    setCards(filterCards(searchTerm, cards))
-    setFavoritesCards(filterfavorites(cards))
-    })
+
+  useEffect(() => {
+    !isAuthorized &&
+    api.getAllItems()
+    .then((cardsData) => {
+      const cards = cardsData.products.filter(item => 
+        item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
+      setCards(filterCards(searchTerm, cards))
+      setFavoritesCards(filterfavorites(cards))
+      })
 },[searchTerm, isAuthorized])
+
 
   useEffect(()=>{
     if(localStorage.getItem('token')) {
@@ -163,8 +171,11 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
     }
   },[])
 
+
+
   const contextUser = {
-    setUserInfo,
+    setAuthorizedPasswordSunmit,
+    setUserSubmit,
     toggleLike,
     logout,
     user,
@@ -202,7 +213,8 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
               <Route path="/my_dogfood" element={<CatalogPage/>} />
               <Route path="/product/:id" element={<ProductPage/>} />
               <Route path="/favorites" element={<FavoritesProductPage />}/>
-              <Route path="/userInfo" element={<UserInfo/>}/>
+              <Route path="/userInfo" element={<UserInfoPage/>}/>
+              <Route path="/setuserinfo" element={<SetUserInfo/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
             <Modal/>

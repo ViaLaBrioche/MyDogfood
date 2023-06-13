@@ -87,10 +87,24 @@ export class Api {
 
 
     resetPassword = (data) => {
-        return fetch(`${this.baseUrl}password-reset`, {
+        return fetch(`${this.baseUrl}forgot-password`, {
             method:  "POST",
             headers:  {
                 authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+        }
+    
+    setPassword = (data, token) => {
+        return fetch(`${this.baseUrl}password-reset/${token}`, {
+            method:  "PATCH",
+            headers:  {
+                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data)
@@ -107,7 +121,10 @@ export class Api {
                 authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                about: 'Frontend',
+                name: data.name,
+            }),
         }).then(res => {
             console.log(res)
             return res.ok ? res.json() : Promise.reject('У меня лапки')
