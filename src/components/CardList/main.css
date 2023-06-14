@@ -211,6 +211,10 @@ border-radius: 12px;
 
 }
 
+.card__container__btn {
+    margin-top: 20px;
+}
+
 @media (max-width: 480px) {
     .main__container {
         margin: 0px 0px 0px 10px;

@@ -35,6 +35,8 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false) 
   const [isForm, setIsForm] = useState()
+  const [openTextarea, setOpenTextarea] = useState(false)
+  const [reviews, setReviews] = useState([])
 
   const navigate = useNavigate()
 
@@ -65,6 +67,30 @@ function App() {
     setModalIsOpen(false);
   };
   
+const addReviewsSubmit = (data) => {
+  return api.addReview(data)
+  .then(()=> {
+    alert("Благодарим за отзыв!")
+    updateReviews(data.id)
+  })
+}
+
+
+const updateReviews = (idProduct) => {
+  api.getAllReviewsById(idProduct)
+  .then((res) => 
+    setReviews(res))
+    return
+  }
+
+const deleteReview = (idRew, idProduct)=> {
+  return api.deleteReview(idRew, idProduct)
+  .then(() => {
+    alert("Отзыв удалён")
+    updateReviews(idProduct)
+    })
+}
+
   const getTokenDataSubmit = (data) => {
       return  api.setPassword(data)
       .then((res)=> {
@@ -120,7 +146,7 @@ const filterfavorites = (cards, id) => {
   const newCards = cards.filter((e) => e.likes.includes(id))
   return newCards      
 }
-
+  
     
 const toggleLike = (id, like) => api.toggleLike(id, like)
   .then(toggleCard => {
@@ -186,10 +212,17 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
 
 
   const contextUser = {
+    setReviews,
+    updateReviews,
+    deleteReview,
+    addReviewsSubmit,
+    setOpenTextarea,
     setUserSubmit,
     toggleLike,
     logout,
+    reviews,
     user,
+    openTextarea,
   }
 
   const contextCards= {

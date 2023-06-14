@@ -1,18 +1,32 @@
 import React from "react";
-import "./product.css"
+import "./product.scss"
 import { ReactComponent as IconHeart } from './Icons/heart.svg'
 import { ReactComponent as IconDelivery } from './Icons/delivery.svg'
 import { ReactComponent as IconQuality } from './Icons/quality.svg'
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
+import { useForm } from "react-hook-form";
+import { ReviewsList } from "./ReviewsList/ReviewsList";
+
 
 
 export const Product = ({product, id}) => {
     const discount = product.price / 100 * product.discount;
-    const {user, toggleLike} = useContext(UserContext)
+    const {user, toggleLike, setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
+    
+    const {register, handleSubmit} = useForm({
+        defaultValues: {
+        id: `${id}`,
+        'text': '',
+    }
+})
+
+    useEffect(()=> {
+        return  updateReviews(id)
+    }, [])
 
     useEffect(() => {
         const isLike = product.likes.includes(user._id)
@@ -29,8 +43,6 @@ export const Product = ({product, id}) => {
         addAlert();
         return
     }
-
-
 
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
@@ -76,6 +88,40 @@ export const Product = ({product, id}) => {
                 </div>
             </div>
             </div>
+            </div>
+            <div className="product__down__container">
+                <div>
+                    <h2>Описание</h2>
+                    <p>{product.description}</p>
+                </div>
+                <h2>Характеристики</h2>
+                <div className="product__specifications">
+                    <div className="product__specifications__left">
+                        <p>Вес</p>
+                        <p>Цена</p>
+                        <p>Польза</p>
+                    </div>
+                    <div className="product__specifications__right">
+                        <p>{product.wight}</p>
+                        <p>{product.price}</p>                       
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quasi commodi nemo saepe maiores iste pariatur sint sapiente dolor eligendi, placeat ratione consequuntur! Rerum vel praesentium nesciunt a, corrupti adipisci!</p>
+                    </div>
+                </div>
+                <div>
+                    <form onSubmit={handleSubmit(addReviewsSubmit)}>
+                        <h2>Отзывы</h2>
+                        <div>{openTextarea ? <div className="product__reviews__text">
+                            <textarea name="" id="" {...register("text")} cols="70" rows="15"></textarea>
+                            <button type="submit" onClick={()=> updateReviews(id)}>Отправить</button>
+                        </div>
+                        :
+                        <button className="write__review__btn" onClick={()=> setOpenTextarea(true)}>Написать отзыв</button>
+                        }
+                        </div>
+                    </form>
+                </div>
+                <div></div>
+                <ReviewsList idProduct={id}/>
             </div>
         </div>
         

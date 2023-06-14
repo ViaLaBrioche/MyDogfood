@@ -115,8 +115,8 @@ export class Api {
             }); 
         }
 
-        setUserInfo = (data) => {
-        return fetch('https://api.react-learning.ru/v2/2222/users/me', {
+    setUserInfo = (data) => {
+        return fetch(`${this.baseUrl}v2/2222/users/me`, {
             method: "PATCH",
             headers: {
                 authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
@@ -131,4 +131,46 @@ export class Api {
             return res.ok ? res.json() : Promise.reject('У меня лапки')
             }); 
         }
+
+    addReview = (data) => {
+        return fetch(`${this.baseUrl}products/review/${data.id}`, {
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: data.text,
+                }),
+            }).then(res => {
+                console.log(res)
+                return res.ok ? res.json() : Promise.reject('У меня лапки')
+                }); 
+            }
+            
+    deleteReview = (idRew, idProd) => {
+        return fetch(`${this.baseUrl}products/review/${idProd}/${idRew}`, {
+
+            method: "DELETE",
+            headers:  {
+                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                },
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+
+    }
+
+    getAllReviewsById = (id) => {
+        return fetch(`${this.baseUrl}products/review/${id}`, {
+                headers: {
+                    authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                    'Content-Type': 'application/json'
+                },
+            }).then(res => {
+                console.log(res)
+                return res.ok ? res.json() : Promise.reject('У меня лапки')
+                }); 
+            }        
 }   
