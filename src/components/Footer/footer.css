@@ -13,10 +13,10 @@ footer {
 }
 
 .footer__links {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 19px;
+    text-decoration: none;
 }
 
 .footer__logo {
@@ -41,5 +41,10 @@ footer {
     font-weight: 400;
     font-size: 9px;
     line-height: 12px;
+    color: #1A1A1A;
+}
+
+.link {
+    text-decoration: none;
     color: #1A1A1A;
 }

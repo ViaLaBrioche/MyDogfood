@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserInfoPage } from './pages/UserPage/UserInfoPage';
 import { SetUserInfo } from './components/UserInfo/SetUserInfo';
 import { TokenForResetPasswordForm } from './components/ResetPasswordForm/TokenForResetPasswordForm';
+import { FaqPage } from './pages/FaqPage/FaqPage';
 
 
 function App() {
@@ -260,6 +261,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
               <Route path="/product/:id" element={<ProductPage/>} />
               <Route path="/favorites" element={<FavoritesProductPage />}/>
               <Route path="/userInfo" element={<UserInfoPage/>}/>
+              <Route path="/faq" element={<FaqPage/>}/>
               <Route path="/setuserinfo" element={<SetUserInfo/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>

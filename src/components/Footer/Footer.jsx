@@ -5,6 +5,7 @@ import { ReactComponent as LogoPhone } from "./Logo/logo-phone.svg";
 import { ReactComponent as LogoTelegram } from "./Logo/logo-telegram.svg";
 import { ReactComponent as LogoViber } from "./Logo/logo-viber.svg";
 import { ReactComponent as LogoVk } from "./Logo/logo-vk.svg";
+import { Link } from "react-router-dom";
 import './footer.css';
 
 export const Footer = () => {
@@ -25,7 +26,7 @@ export const Footer = () => {
                 </div>
                 <div className="footer__links">
                     <span>Оплата и доставка</span>
-                    <span>Часто спрашивают</span>
+                    <Link className="link" to="/faq"><span>Часто спрашивают</span></Link>
                     <span>Обратная связь</span>
                     <span>Контакты</span>
                 </div>
