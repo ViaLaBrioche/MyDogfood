@@ -8,23 +8,24 @@ import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
 import { useForm } from "react-hook-form";
 import { ReviewsList } from "./ReviewsList/ReviewsList";
-import { StarList } from "../Rating/StarList";
+import { StarRating } from "../Rating/StarRating";
 
 
 
 export const Product = ({product, id}) => {
+
     const discount = product.price / 100 * product.discount;
     const {user, toggleLike, setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
-    
+    const [rating, setRating] = useState(0)
+
     const {register, handleSubmit} = useForm({
         defaultValues: {
         id: `${id}`,
         'text': '',
     }
 })
-
     useEffect(()=> {
         return  updateReviews(id)
     }, [])
@@ -112,7 +113,7 @@ export const Product = ({product, id}) => {
                     <form onSubmit={handleSubmit(addReviewsSubmit)}>
                         <h2>Отзывы</h2>
                         <div>{openTextarea ? <div className="product__reviews__text">
-                            <StarList/>
+                            <StarRating rating={rating} setRating={setRating}/>
                             <textarea name="" id="" {...register("text")} cols="70" rows="15"></textarea>
                             <button type="submit" onClick={()=> updateReviews(id)}>Отправить</button>
                         </div>

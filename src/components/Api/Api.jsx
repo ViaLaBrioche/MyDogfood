@@ -141,6 +141,7 @@ export class Api {
                 },
                 body: JSON.stringify({
                     text: data.text,
+                    rating: data.rating,
                 }),
             }).then(res => {
                 console.log(res)
