@@ -68,7 +68,6 @@ function App() {
   };
   
   const addReviewsSubmit = (data) => {
-    console.log(data)
     return api.addReview(data)
     .then(()=> {
       alert("Благодарим за отзыв!")

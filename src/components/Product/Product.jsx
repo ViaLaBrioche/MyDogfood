@@ -18,7 +18,7 @@ export const Product = ({product, id}) => {
     const {user, toggleLike, setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
-    const [rating, setRating] = useState(0)
+  
 
     const {register, handleSubmit} = useForm({
         defaultValues: {
@@ -113,7 +113,7 @@ export const Product = ({product, id}) => {
                     <form onSubmit={handleSubmit(addReviewsSubmit)}>
                         <h2>Отзывы</h2>
                         <div>{openTextarea ? <div className="product__reviews__text">
-                            <StarRating rating={rating} setRating={setRating}/>
+                            <StarRating register={register}/>
                             <textarea name="" id="" {...register("text")} cols="70" rows="15"></textarea>
                             <button type="submit" onClick={()=> updateReviews(id)}>Отправить</button>
                         </div>
