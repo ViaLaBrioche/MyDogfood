@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {ReactComponent as Star} from "./Icons/starFill.svg"
-import './rating.scss';
+import './rating.css';
 
 
 export const  StarRating = ({register}) => {
