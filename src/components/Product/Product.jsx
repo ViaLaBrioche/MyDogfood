@@ -8,6 +8,7 @@ import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
 import { useForm } from "react-hook-form";
 import { ReviewsList } from "./ReviewsList/ReviewsList";
+import { StarList } from "../Rating/StarList";
 
 
 
@@ -111,6 +112,7 @@ export const Product = ({product, id}) => {
                     <form onSubmit={handleSubmit(addReviewsSubmit)}>
                         <h2>Отзывы</h2>
                         <div>{openTextarea ? <div className="product__reviews__text">
+                            <StarList/>
                             <textarea name="" id="" {...register("text")} cols="70" rows="15"></textarea>
                             <button type="submit" onClick={()=> updateReviews(id)}>Отправить</button>
                         </div>

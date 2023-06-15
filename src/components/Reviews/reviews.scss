@@ -8,10 +8,11 @@
 .product__reviews__container {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     border-top: solid #7B8E98 1px;
     border-bottom: solid #7B8E98 1px;
     padding: 5px;
+    box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
 }
 
 .review__btns {
@@ -30,4 +31,11 @@
 .review__date {
     color: #7B8E98;
     box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
+}
+.rating__stars {
+    height: 30px;
+    width: 30%;
+    display: flex;
+    gap: 3px;
+    margin-bottom: 5px;
 }

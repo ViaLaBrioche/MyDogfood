@@ -67,29 +67,30 @@ function App() {
     setModalIsOpen(false);
   };
   
-const addReviewsSubmit = (data) => {
-  return api.addReview(data)
-  .then(()=> {
-    alert("Благодарим за отзыв!")
-    updateReviews(data.id)
-  })
-}
-
-
-const updateReviews = (idProduct) => {
-  api.getAllReviewsById(idProduct)
-  .then((res) => 
-    setReviews(res))
-    return
+  const addReviewsSubmit = (data) => {
+    return api.addReview(data)
+    .then(()=> {
+      alert("Благодарим за отзыв!")
+      updateReviews(data.id)
+      setOpenTextarea(false)
+    })
   }
 
-const deleteReview = (idRew, idProduct)=> {
-  return api.deleteReview(idRew, idProduct)
-  .then(() => {
-    alert("Отзыв удалён")
-    updateReviews(idProduct)
-    })
-}
+
+  const updateReviews = (idProduct) => {
+    api.getAllReviewsById(idProduct)
+    .then((res) => 
+      setReviews(res))
+      return
+    }
+
+  const deleteReview = (idRew, idProduct)=> {
+    return api.deleteReview(idRew, idProduct)
+    .then(() => {
+      alert("Отзыв удалён")
+      updateReviews(idProduct)
+      })
+  }
 
   const getTokenDataSubmit = (data) => {
       return  api.setPassword(data)
@@ -113,7 +114,7 @@ const deleteReview = (idRew, idProduct)=> {
     return api.registrationUser(data)
 
     .then((res)=> {
-      console.log(res)
+      alert("Вы зарегистрировались!")
       closeModal()
     })
   }
@@ -121,13 +122,12 @@ const deleteReview = (idRew, idProduct)=> {
   const resetDataSubmit = (data) => {
     return api.resetPassword(data)
 
-    .then((res)=> {
-      console.log(res)
+    .then(()=> {
       alert("Пароль отправлен вам на почту!")
       setIsForm(<TokenForResetPasswordForm/>)
     })
     .catch((res)=>{
-      console.log(res, 'ERR')
+      console.log(res, 'ERROR')
     })
   }
   
@@ -142,9 +142,9 @@ const deleteReview = (idRew, idProduct)=> {
   )
 };
 
-const filterfavorites = (cards, id) => {
-  const newCards = cards.filter((e) => e.likes.includes(id))
-  return newCards      
+  const filterfavorites = (cards, id) => {
+    const newCards = cards.filter((e) => e.likes.includes(id))
+    return newCards      
 }
   
     
