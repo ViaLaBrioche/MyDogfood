@@ -49,8 +49,7 @@ export class Api {
                 authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 },
         }).then(res => {
-            console.log(res)
-            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            return res.ok ? res.json() : Promise.reject("Требуется авторизация")
             }); 
     }
 

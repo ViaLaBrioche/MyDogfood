@@ -21,7 +21,6 @@ import { SetUserInfo } from './components/UserInfo/SetUserInfo';
 import { TokenForResetPasswordForm } from './components/ResetPasswordForm/TokenForResetPasswordForm';
 import { FaqPage } from './pages/FaqPage/FaqPage';
 
-
 function App() {
 
   const config = {
@@ -159,10 +158,9 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
         updateCard()    
     return
   })
-  .catch(res=> {
-      return console.log(res, 'что-то сломалось')
+  .catch(err=> {
+      return alert(err)
   });
-
 
 
 

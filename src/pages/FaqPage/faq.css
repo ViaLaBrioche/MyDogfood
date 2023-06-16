@@ -1,0 +1,25 @@
+.accordion__title {
+    display: flex;
+    font-weight: 800;
+    gap: 21px;
+    text-align: center;
+}
+
+.accordion__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 53px;
+}
+
+.accordion__minus {
+    margin-bottom: 50%;
+}
+
+.accordion__content {
+    font-weight: 400;
+}
+
+.accordion__symbol {
+    display: flex;
+    align-items: center;
+}
