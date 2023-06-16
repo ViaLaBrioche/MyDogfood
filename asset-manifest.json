@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MyDogfood/static/css/main.c88356ad.css",
-    "main.js": "/MyDogfood/static/js/main.7c39e018.js",
+    "main.css": "/MyDogfood/static/css/main.327553d0.css",
+    "main.js": "/MyDogfood/static/js/main.d213dba9.js",
     "static/media/logoFooter.svg": "/MyDogfood/static/media/logoFooter.59bf6987ce5ad7a30c6f6d1b45a5226d.svg",
     "static/media/logoDogo.svg": "/MyDogfood/static/media/logoDogo.dda4d76b73ae669e8e4e16869937b992.svg",
     "static/media/quality.svg": "/MyDogfood/static/media/quality.f9c357b52bd41495be48401818180b35.svg",
@@ -15,17 +15,20 @@
     "static/media/smile.svg": "/MyDogfood/static/media/smile.621005b621ed19df040e26957164b309.svg",
     "static/media/delivery.svg": "/MyDogfood/static/media/delivery.7b8634da6632f6eb8eba1207c1c07586.svg",
     "static/media/mail.svg": "/MyDogfood/static/media/mail.0e20096a3eb1756d05ecd72a7612e3e7.svg",
+    "static/media/starFill.svg": "/MyDogfood/static/media/starFill.8eb7398576acf7d86ce427e4b385da33.svg",
     "static/media/Close.svg": "/MyDogfood/static/media/Close.5e61c055edd512728ad1cdd5254edba7.svg",
     "static/media/loupe.svg": "/MyDogfood/static/media/loupe.4c69a8d32fd282582d66d1ff6c8cd917.svg",
-    "static/media/heart.svg": "/MyDogfood/static/media/heart.4dd4b452939c3b412571f3fe96d96412.svg",
+    "static/media/heart.svg": "/MyDogfood/static/media/heart.34c4776735aae99d9139712801416ea2.svg",
     "static/media/logo-telegram.svg": "/MyDogfood/static/media/logo-telegram.124803772b93c360fe68c6af8895c56d.svg",
     "index.html": "/MyDogfood/index.html",
     "static/media/basket.svg": "/MyDogfood/static/media/basket.b3d22710863f40a39594fb6c3a3877ac.svg",
-    "main.c88356ad.css.map": "/MyDogfood/static/css/main.c88356ad.css.map",
-    "main.7c39e018.js.map": "/MyDogfood/static/js/main.7c39e018.js.map"
+    "static/media/plus.svg": "/MyDogfood/static/media/plus.0733f2f92880ca346683a92de5c0ba78.svg",
+    "static/media/minus.svg": "/MyDogfood/static/media/minus.0881411c2446922acdc1f4d8780aa3fe.svg",
+    "main.327553d0.css.map": "/MyDogfood/static/css/main.327553d0.css.map",
+    "main.d213dba9.js.map": "/MyDogfood/static/js/main.d213dba9.js.map"
   },
   "entrypoints": [
-    "static/css/main.c88356ad.css",
-    "static/js/main.7c39e018.js"
+    "static/css/main.327553d0.css",
+    "static/js/main.d213dba9.js"
   ]
 }
