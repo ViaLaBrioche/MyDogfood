@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useMemo, useCallback, useEffect, useState } from 'react';
 import React from 'react';
 import { Header } from './components/Header/Header';
 import './components/CardList/main.css'
@@ -45,7 +45,7 @@ function App() {
     .then(()=> alert('Данные успешно изменены'))
     .then(()=> {
       navigate("/userInfo")
-      window.location.reload()})
+    })
   }
 
 
@@ -56,12 +56,15 @@ function App() {
     window.location.reload();
   }
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
+
     if (!isAuthorized) {
+      console.log('open')
       setIsForm(<AuthorizationForm/>)
       setModalIsOpen(true)}
     else {navigate("/userInfo")}
-  };
+    },[isAuthorized, navigate])
+  
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -235,6 +238,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
   }
 
   const contextModal = {
+    useMemo,
     setIsForm,
     openModal,
     closeModal,

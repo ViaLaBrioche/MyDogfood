@@ -1,4 +1,4 @@
-import React from "react";
+import React from  "react";
 import { ReactComponent as LogoFooter } from "./Logo/logoFooter.svg";
 import { ReactComponent as LogoInstagram } from "./Logo/logo-instagram.svg";
 import { ReactComponent as LogoPhone } from "./Logo/logo-phone.svg";
@@ -7,8 +7,10 @@ import { ReactComponent as LogoViber } from "./Logo/logo-viber.svg";
 import { ReactComponent as LogoVk } from "./Logo/logo-vk.svg";
 import { Link } from "react-router-dom";
 import './footer.css';
+import { memo } from "react";
 
-export const Footer = () => {
+export const Footer = memo(() => {
+
     return (
     <footer>
         
@@ -47,4 +49,4 @@ export const Footer = () => {
 
     </footer>
     );
-}
+})

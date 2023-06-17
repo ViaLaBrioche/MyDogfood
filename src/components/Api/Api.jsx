@@ -49,6 +49,7 @@ export class Api {
                 authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
                 },
         }).then(res => {
+            console.log(res)
             return res.ok ? res.json() : Promise.reject("Требуется авторизация")
             }); 
     }
@@ -165,7 +166,7 @@ export class Api {
     getAllReviewsById = (id) => {
         return fetch(`${this.baseUrl}products/review/${id}`, {
                 headers: {
-                    authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                    authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4NzFhMmUwYmYyYzUxOWI5Y2NmYmUiLCJncm91cCI6IjEyIiwiaWF0IjoxNjgzNTE3ODcwLCJleHAiOjE3MTUwNTM4NzB9.US7rv52pRMThoo6sbhQeetW87zCYwxUuqZ6yZO2iS3w`,
                     'Content-Type': 'application/json'
                 },
             }).then(res => {

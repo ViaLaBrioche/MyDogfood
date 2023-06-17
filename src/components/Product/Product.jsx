@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
 import { useForm } from "react-hook-form";
-import { ReviewsList } from "./ReviewsList/ReviewsList";
+import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
 import { StarRating } from "../Rating/StarRating";
 
 
@@ -18,7 +18,7 @@ export const Product = ({product, id}) => {
     const {user, toggleLike, setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
-  
+
 
     const {register, handleSubmit} = useForm({
         defaultValues: {
@@ -105,7 +105,7 @@ export const Product = ({product, id}) => {
                     </div>
                     <div className="product__specifications__right">
                         <p>{product.wight}</p>
-                        <p>{product.price}</p>                       
+                        <p>{product.price}&nbsp;₽</p>                       
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quasi commodi nemo saepe maiores iste pariatur sint sapiente dolor eligendi, placeat ratione consequuntur! Rerum vel praesentium nesciunt a, corrupti adipisci!</p>
                     </div>
                 </div>

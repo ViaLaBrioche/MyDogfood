@@ -11,10 +11,9 @@ import { useContext } from 'react'
 import { CardsContext } from '../../context/Context'
 
 export const Header = () => {
-
+    
     const {favoritesCards, setSearchTerm, openModal} = useContext(CardsContext)
     const isAmount = favoritesCards.length;
-
 
     return <header>
                 <div className="main__container">
