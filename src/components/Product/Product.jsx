@@ -19,6 +19,13 @@ export const Product = ({product, id}) => {
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
     const [total, setTotal] = useState(0)
+    const {register, handleSubmit, reset} = useForm({
+        mode: 'onChange',
+        defaultValues: {
+        id: `${id}`,
+        'text': '',
+    }
+    })
 
     const totalPrice = (product) => {
         const discountTotal = product.price - (product.price / 100 * product.discount);
@@ -30,12 +37,7 @@ export const Product = ({product, id}) => {
         totalPrice(product)
     },[counter])
 
-    const {register, handleSubmit} = useForm({
-        defaultValues: {
-        id: `${id}`,
-        'text': '',
-    }
-})
+
     useEffect(()=> {
         return  updateReviews(id)
     }, [])
@@ -56,6 +58,10 @@ export const Product = ({product, id}) => {
         return
     }
 
+
+    useEffect(() => {
+        reset()
+    }, [addReviewsSubmit])
 
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
@@ -126,7 +132,8 @@ export const Product = ({product, id}) => {
                         <h2>Отзывы</h2>
                         <div>{openTextarea ? <div className="product__reviews__text">
                             <StarRating register={register}/>
-                            <textarea name="" id="" {...register("text")} cols="70" rows="15"></textarea>
+                            <textarea cols="70" rows="15" {...register("text",
+                                {required: true})}></textarea>
                             <button type="submit" onClick={()=> updateReviews(id)}>Отправить</button>
                         </div>
                         :

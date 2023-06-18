@@ -71,14 +71,15 @@ function App() {
     setModalIsOpen(false);
   };
   
-  const addReviewsSubmit = (data) => {
+  const addReviewsSubmit = useCallback((data) => {
     return api.addReview(data)
     .then(()=> {
       alert("Благодарим за отзыв!")
       updateReviews(data.id)
       setOpenTextarea(false)
+      
     })
-  }
+  },[reviews])
 
 
   const updateReviews = (idProduct) => {
