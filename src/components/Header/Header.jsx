@@ -5,7 +5,7 @@ import { ReactComponent as LogoDogoMini} from './LogoDogo/logoDogoMini.svg'
 import { ReactComponent as IconBasket } from './Icons/basket.svg'
 import { Search } from '../Header/Search/Search.jsx'
 import React from 'react'
-import './header.css';
+import './header.scss';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react'
 import { CardsContext } from '../../context/Context'

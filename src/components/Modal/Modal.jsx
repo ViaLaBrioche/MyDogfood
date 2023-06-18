@@ -9,7 +9,7 @@ export const Modal = ()=> {
     const {closeModal, modalIsOpen, isForm} = useContext(ModalContext)
 
     return <div className={`modal__container ${!!modalIsOpen ? "modal__active" : null}`}>
-            <div className="modal__btn__close" onClick={()=> closeModal()}><Close/></div>
+            <div className="modal__btn__close" onClick={()=> closeModal()}><Close className="modal__close__btn"/></div>
             {isForm}
     </div>
 }

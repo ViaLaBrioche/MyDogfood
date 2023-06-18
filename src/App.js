@@ -45,6 +45,7 @@ function App() {
     .then(()=> alert('Данные успешно изменены'))
     .then(()=> {
       navigate("/userInfo")
+      window.location.reload();
     })
   }
 

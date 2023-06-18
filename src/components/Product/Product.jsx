@@ -14,11 +14,21 @@ import { StarRating } from "../Rating/StarRating";
 
 export const Product = ({product, id}) => {
 
-    const discount = product.price / 100 * product.discount;
+    
     const {user, toggleLike, setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
+    const [total, setTotal] = useState(0)
 
+    const totalPrice = (product) => {
+        const discountTotal = product.price - (product.price / 100 * product.discount);
+        const total = counter > 0 ? (discountTotal)*counter : discountTotal
+        setTotal(total)
+    } 
+    
+    useEffect(()=> {
+        totalPrice(product)
+    },[counter])
 
     const {register, handleSubmit} = useForm({
         defaultValues: {
@@ -46,6 +56,7 @@ export const Product = ({product, id}) => {
         return
     }
 
+
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
     <div className='product__container_name_rate'>
@@ -55,7 +66,8 @@ export const Product = ({product, id}) => {
         <div className="product__container_img_active">
             <img className="product__image" alt='images' src={product.pictures}/>
             <div className="product__container__active">
-                <div className="product__price"><b>{counter > 0 ? (product.price-discount)*counter : product.price-discount}&nbsp;₽</b></div>
+                {!!product.discount && <div className="product__old__price">{counter > 0 ? product.price*counter : product.price}</div>}
+                <div className={`product__price ${!!product.discount && 'price__discount'}`}><b>{total}&nbsp;₽</b></div>
                 <div className="product__container__btns">
                 <div id="counter">
                     <input type="button"  className="button__count__minus counter__btns" value="-" onClick={() => setCounter(counter > 0 ? counter - 1 : 0)}/>
