@@ -8,3 +8,12 @@ input[type="radio"] {
     stroke-width: 1;
 }
 
+.stars {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    cursor: pointer;
+}

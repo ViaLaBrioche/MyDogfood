@@ -9,6 +9,7 @@ import { UserContext } from "../../context/Context";
 import { useForm } from "react-hook-form";
 import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
 import { StarRating } from "../Rating/StarRating";
+import { Review } from "../Reviews/Reviews";
 
 
 
@@ -19,11 +20,12 @@ export const Product = ({product, id}) => {
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
     const [total, setTotal] = useState(0)
-    const {register, handleSubmit, reset} = useForm({
+    const {register, handleSubmit, reset, formState: {errors}} = useForm({
         mode: 'onChange',
         defaultValues: {
         id: `${id}`,
         'text': '',
+        rating: "",
     }
     })
 
@@ -131,10 +133,11 @@ export const Product = ({product, id}) => {
                     <form onSubmit={handleSubmit(addReviewsSubmit)}>
                         <h2>Отзывы</h2>
                         <div>{openTextarea ? <div className="product__reviews__text">
-                            <StarRating register={register}/>
+                            <StarRating errors={errors} register={register}/>
                             <textarea cols="70" rows="15" {...register("text",
                                 {required: true})}></textarea>
-                            <button type="submit" onClick={()=> updateReviews(id)}>Отправить</button>
+                                {errors.text && <span className="error__textarea">Поле обязательно для заполнения</span>}
+                            <button type="submit" >Отправить</button>
                         </div>
                         :
                         <button className="write__review__btn" onClick={()=> setOpenTextarea(true)}>Написать отзыв</button>
