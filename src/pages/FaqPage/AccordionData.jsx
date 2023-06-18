@@ -1,4 +1,4 @@
-import React from "react";
+
 export const accordionData = [
     {
       title: 'Случайный текст похож на гитарный перебор?',

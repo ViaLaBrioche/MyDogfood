@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../../context/Context";
-import { Review } from "../../Reviews/Reviews";
+import { Review } from "../Review";
 
 export const ReviewsList = ({idProduct}) => {
 

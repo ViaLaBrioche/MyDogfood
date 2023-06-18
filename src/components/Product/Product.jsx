@@ -6,43 +6,33 @@ import { ReactComponent as IconQuality } from './Icons/quality.svg'
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
-import { useForm } from "react-hook-form";
 import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
-import { StarRating } from "../Rating/StarRating";
-import { Review } from "../Reviews/Reviews";
+import { ReviewForm } from "../Rating/ReviewForm";
+
 
 
 
 export const Product = ({product, id}) => {
 
     
-    const {user, toggleLike, setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
+    const {user, toggleLike} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
     const [total, setTotal] = useState(0)
-    const {register, handleSubmit, reset, formState: {errors}} = useForm({
-        mode: 'onChange',
-        defaultValues: {
-        id: `${id}`,
-        'text': '',
-        rating: "",
-    }
-    })
+
 
     const totalPrice = (product) => {
         const discountTotal = product.price - (product.price / 100 * product.discount);
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
         setTotal(total)
     } 
+
+
     
     useEffect(()=> {
         totalPrice(product)
     },[counter])
 
-
-    useEffect(()=> {
-        return  updateReviews(id)
-    }, [])
 
     useEffect(() => {
         const isLike = product.likes.includes(user._id)
@@ -60,10 +50,6 @@ export const Product = ({product, id}) => {
         return
     }
 
-
-    useEffect(() => {
-        reset()
-    }, [addReviewsSubmit])
 
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
@@ -129,23 +115,7 @@ export const Product = ({product, id}) => {
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quasi commodi nemo saepe maiores iste pariatur sint sapiente dolor eligendi, placeat ratione consequuntur! Rerum vel praesentium nesciunt a, corrupti adipisci!</p>
                     </div>
                 </div>
-                <div>
-                    <form onSubmit={handleSubmit(addReviewsSubmit)}>
-                        <h2>Отзывы</h2>
-                        <div>{openTextarea ? <div className="product__reviews__text">
-                            <StarRating errors={errors} register={register}/>
-                            <textarea cols="70" rows="15" {...register("text",
-                                {required: true})}></textarea>
-                                {errors.text && <span className="error__textarea">Поле обязательно для заполнения</span>}
-                            <button type="submit" >Отправить</button>
-                        </div>
-                        :
-                        <button className="write__review__btn" onClick={()=> setOpenTextarea(true)}>Написать отзыв</button>
-                        }
-                        </div>
-                    </form>
-                </div>
-                <div></div>
+                <ReviewForm idProduct={id}/>
                 <ReviewsList idProduct={id}/>
             </div>
         </div>

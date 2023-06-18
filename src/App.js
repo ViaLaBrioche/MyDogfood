@@ -60,7 +60,6 @@ function App() {
   const openModal = useCallback(() => {
 
     if (!isAuthorized) {
-      console.log('open')
       setIsForm(<AuthorizationForm/>)
       setModalIsOpen(true)}
     else {navigate("/userInfo")}
@@ -78,6 +77,9 @@ function App() {
       updateReviews(data.id)
       setOpenTextarea(false)
       
+    })
+    .catch(() => {
+      return alert('Требуется авторизация')
     })
   },[reviews])
 
@@ -112,6 +114,9 @@ function App() {
       setIsAuthorized(true)
       localStorage.setItem('token', JSON.stringify(res.token))
       closeModal()
+    })
+    .catch((res) => {
+      alert("Неверный логин или пароль")
     })
 }
 
