@@ -17,6 +17,7 @@
 
 .modal__active {
     display: inline;
+    position: fixed;
 }
 
 .modal__btn__close {
@@ -95,5 +96,17 @@
     color: #1A1A1A;
 }
 
+.overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128,128,128,0.5);
+    display: none; 
+}
 
+.overlay__active {
+    display: inline;
+}
 
