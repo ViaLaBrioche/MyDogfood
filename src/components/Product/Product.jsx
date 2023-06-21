@@ -27,8 +27,6 @@ export const Product = ({product, id}) => {
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
         setTotal(total)
     } 
-
-
     
     useEffect(()=> {
         totalPrice(product)
