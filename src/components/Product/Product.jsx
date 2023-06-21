@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { useState, useContext, useEffect} from "react"
 import { UserContext } from "../../context/Context";
 import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
-import { ReviewForm } from "../Rating/ReviewForm";
+import { ReviewForm } from "../Reviews/ReviewForm";
+import { RatingProduct } from "../Rating/RatingProduct";
 
 
 
@@ -56,11 +57,12 @@ export const Product = ({product, id}) => {
     <div className='product__container_name_rate'>
         <h1>{product.name}</h1>
         <span className="product__articul">Арстикул: 12345</span>
+        <RatingProduct />
     </div>
         <div className="product__container_img_active">
             <img className="product__image" alt='images' src={product.pictures}/>
             <div className="product__container__active">
-                {!!product.discount && <div className="product__old__price">{counter > 0 ? product.price*counter : product.price}</div>}
+                {!!product.discount && <div className="product__old__price">{counter > 0 ? product.price*counter : product.price}&nbsp;₽</div>}
                 <div className={`product__price ${!!product.discount && 'price__discount'}`}><b>{total}&nbsp;₽</b></div>
                 <div className="product__container__btns">
                 <div id="counter">
@@ -104,14 +106,14 @@ export const Product = ({product, id}) => {
                 </div>
                 <h2>Характеристики</h2>
                 <div className="product__specifications">
-                    <div className="product__specifications__left">
+                    <div>
                         <p>Вес</p>
                         <p>Цена</p>
                         <p>Польза</p>
                     </div>
-                    <div className="product__specifications__right">
+                    <div>
                         <p>{product.wight}</p>
-                        <p>{product.price}&nbsp;₽</p>                       
+                        <p>{total}&nbsp;₽</p>                       
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quasi commodi nemo saepe maiores iste pariatur sint sapiente dolor eligendi, placeat ratione consequuntur! Rerum vel praesentium nesciunt a, corrupti adipisci!</p>
                     </div>
                 </div>

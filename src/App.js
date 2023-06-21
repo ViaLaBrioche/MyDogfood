@@ -37,19 +37,18 @@ function App() {
   const [isForm, setIsForm] = useState()
   const [openTextarea, setOpenTextarea] = useState(false)
   const [reviews, setReviews] = useState([])
-
   const navigate = useNavigate()
 
   const setUserSubmit = (data) => {
-    api.setUserInfo(data) 
-    .then(()=> alert('Данные успешно изменены'))
+    Promise.all([api.setUserInfo(data), api.setUserAvatar(data)])
     .then(()=> {
+      alert('Данные успешно изменены')
       navigate("/userInfo")
       window.location.reload();
     })
   }
 
-
+  
   const logout = () => {
     localStorage.clear()
     navigate("/my_dogfood")
@@ -97,6 +96,7 @@ function App() {
       alert("Отзыв удалён")
       updateReviews(idProduct)
       })
+    .catch(()=> alert("Требуется авторизация"))
   }
 
   const getTokenDataSubmit = (data) => {
@@ -152,18 +152,18 @@ function App() {
   )
 };
 
-  const filterfavorites = (cards, id) => {
+  const filterFavorites = (cards, id) => {
     const newCards = cards.filter((e) => e.likes.includes(id))
     return newCards      
 }
   
     
-const toggleLike = (id, like) => api.toggleLike(id, like)
+const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
   .then(toggleCard => {
       const updateCard = () => {
         const newCards = cards.map((e) => e._id === toggleCard._id ? toggleCard : e)
         setCards(newCards)
-        setFavoritesCards(filterfavorites(newCards, user._id))    
+        setFavoritesCards(filterFavorites(newCards, user._id))   
     } 
         updateCard()    
     return
@@ -184,7 +184,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
           item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
           setCards(filterCards(searchTerm, cards))
           setUser(userData) 
-          setFavoritesCards(filterfavorites(cards, userData._id))
+          setFavoritesCards(filterFavorites(cards, userData._id))
         return
       })
       .catch((error) => {
@@ -204,7 +204,7 @@ const toggleLike = (id, like) => api.toggleLike(id, like)
       const cards = cardsData.products.filter(item => 
         item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
       setCards(filterCards(searchTerm, cards))
-      setFavoritesCards(filterfavorites(cards))
+      setFavoritesCards(filterFavorites(cards))
       return
       })
     }, 300);

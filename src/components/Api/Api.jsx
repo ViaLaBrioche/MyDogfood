@@ -173,5 +173,22 @@ export class Api {
                 console.log(res)
                 return res.ok ? res.json() : Promise.reject('У меня лапки')
                 }); 
-            }        
+            }
+            
+    setUserAvatar = (data) => {
+        return fetch(`${this.baseUrl}users/me/avatar`, {
+            method: "PATCH",
+            headers: {
+                authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                avatar: data.avatar
+            }),
+        }).then(res => {
+            console.log(res)
+            return res.ok ? res.json() : Promise.reject('У меня лапки')
+            }); 
+
+    }
 }   

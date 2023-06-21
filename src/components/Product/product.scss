@@ -1,3 +1,5 @@
+$yellow: #FFE44D;
+
 .product__btn__back, .product__articul {
     margin-top: 7%;
     background: none;
@@ -81,7 +83,7 @@
 }
 
 .product__busket__btn {
-    background: #FFE44D;
+    background: $yellow;
     border-radius: 55px;
     border: none;
     height: 3em;
@@ -113,22 +115,18 @@
 .product__specifications {
     display: flex;
     justify-content: space-between;
-        p  {
+        & p  {
             line-height: 35px;
             color: #7B8E98;
         }
+        & div {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            width: 50%;
+        }
 }
 
-.product__specifications__left, .product__specifications__right {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 50%;
-}
-
-.product__specifications__left {
-    align-items: start;
-}
 
 .product__reviews__text {
     display: flex;
@@ -137,7 +135,7 @@
 }
 
 .product__reviews__text button, .write__review__btn {
-    background: #FFE44D;
+    background: $yellow;
     border-radius: 55px;
     border: none;
     height: 3em;
@@ -145,13 +143,14 @@
     margin: 5px;
 }
 
-.product__reviews__text textarea {
-    outline-color: #FFE44D;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
-    border: none;
+.product__reviews__text {
+    & textarea {
+        outline-color: $yellow;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
+        border: none;
 }
-
+}
 .price__discount {
     color: #F44336;
 }
@@ -170,5 +169,4 @@
 
 .error__textarea {
     margin: 10px 0px 10px 0px;
-
 }

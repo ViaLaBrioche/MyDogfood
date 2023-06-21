@@ -25,7 +25,7 @@ export const ProductPage = () => {
     }, [cards]);
 
     return (
-        <>
+        <> 
             {!!Object.keys(product).length ?
                 <Product product={product} id={id} />
                 : <SpinerLoading />

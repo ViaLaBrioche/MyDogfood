@@ -16,7 +16,6 @@ export const SetUserInfo = () => {
             <div className="user__container">
                 <div className="user__info">
                     <div className="user__avatar">
-                        <p>Фото</p>
                         <img src={user.avatar} alt=""/>
                     </div>
                     <form className="modal__form" onSubmit={handleSubmit(setUserSubmit)}>
@@ -26,13 +25,9 @@ export const SetUserInfo = () => {
                         <input id="name" type="text"  placeholder={user.name} {...register("name")} />
                         <label htmlFor="email" >Почта</label>
                         <input id="email" type="email" placeholder={user.email} {...register("email")} />
-                    {/* <form className="modal__form" onSubmit={handleSubmit(setAuthorizedPasswordSubmit)}>    
-                        <h3>Смена пароля</h3>
-                        <label htmlFor="oldPass">Старый пароль</label>
-                        <input id="oldPass" type="password" {...register("oldpass")} />
-                        <label htmlFor="newPass">Новый пароль</label>
-                        <input id="newPass" type="password"{...register("newpass")} />
-                    </form> */}
+                        <h3>Смена аватара</h3>
+                        <label htmlFor="avatar">Адрес на картинку</label>
+                        <input id="avatar" type="text" {...register("avatar")} /> 
                     </div>
                     <div className="user__btns">
                         <button type="submit" className="user__btn">Сохранить</button>

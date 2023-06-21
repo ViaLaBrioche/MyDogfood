@@ -14,10 +14,10 @@ export const UserInfo = () => {
                 <button className="favorite__btn__back" type="button">Назад</button></Link>
             <h1>Профиль</h1>
             <div className="user__container">
-                <div className="user__info">
+                <div className="user__info"> 
+                
                     <div className="user__avatar">
-                        <p>Фото</p>
-                        <img src={user.avatar} alt=""/>
+                        <img className="user__avatar__picture" src={user.avatar} alt=""/>
                     </div>
                     <div className="user__data">
                         <h2>{user.name}</h2>
