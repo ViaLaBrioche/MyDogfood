@@ -27,7 +27,7 @@ export const Header = () => {
                                 {!!isAmount && <div className='header__heart__favorite__amount'>{favoritesCards.length}</div>}
                             </Link>
                             </div>
-                        <IconBasket className="header__icon__basket"/>
+                        <Link to="/basket"><IconBasket className="header__icon__basket" /></Link>
                         <IconDog className="header__icon__auth" onClick={()=> openModal()}/>
                         </div>
                     </div>

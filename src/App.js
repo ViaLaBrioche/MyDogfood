@@ -20,6 +20,7 @@ import { UserInfoPage } from './pages/UserPage/UserInfoPage';
 import { SetUserInfo } from './components/UserInfo/SetUserInfo';
 import { TokenForResetPasswordForm } from './components/ResetPasswordForm/TokenForResetPasswordForm';
 import { FaqPage } from './pages/FaqPage/FaqPage';
+import { BasketPage } from './pages/BasketPage/BasketPage';
 
 function App() {
 
@@ -37,8 +38,8 @@ function App() {
   const [isForm, setIsForm] = useState()
   const [openTextarea, setOpenTextarea] = useState(false)
   const [reviews, setReviews] = useState([])
+  const [basketCards, setBasketCards] = useState([])
   const navigate = useNavigate()
-
   const setUserSubmit = (data) => {
     Promise.all([api.setUserInfo(data), api.setUserAvatar(data)])
     .then(()=> {
@@ -156,6 +157,16 @@ function App() {
     const newCards = cards.filter((e) => e.likes.includes(id))
     return newCards      
 }
+
+  const addToBasket = (id) => api.getProductById(id)
+  .then(card => {
+    const newCards = cards.filter((e) => e._id.includes(card._id))
+    const oldCards = basketCards.filter((e) => e._id.includes(card._id))
+      if (!!oldCards.length) {
+        alert('Товар уже в корзине')
+      } else {setBasketCards([...newCards, ...basketCards])}
+    return
+  })
   
     
 const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
@@ -221,6 +232,8 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
 
 
   const contextUser = {
+    basketCards,
+    addToBasket,
     setReviews,
     updateReviews,
     deleteReview,
@@ -272,6 +285,7 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
               <Route path="/userInfo" element={<UserInfoPage/>}/>
               <Route path="/faq" element={<FaqPage/>}/>
               <Route path="/setuserinfo" element={<SetUserInfo/>}/>
+              <Route path="/basket" element={<BasketPage/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
             <Modal/>

@@ -16,7 +16,7 @@ import { RatingProduct } from "../Rating/RatingProduct";
 export const Product = ({product, id}) => {
 
     
-    const {user, toggleLike} = useContext(UserContext)
+    const {user, toggleLike, addToBasket} = useContext(UserContext)
     const [counter, setCounter] = useState(0);
     const [like, setLike] = useState(false);
     const [total, setTotal] = useState(0)
@@ -44,6 +44,7 @@ export const Product = ({product, id}) => {
     }};
 
     const productAddAlert = () => {
+        product.stock > counter &&
         setCounter(counter + 1)
         addAlert();
         return
@@ -68,7 +69,7 @@ export const Product = ({product, id}) => {
                     <div id="buttonCountNumber"><b>{counter}</b></div>
                     <input type="button" className="button__count__plus counter__btns" value="+" onClick={() => productAddAlert()}/>
                 </div>
-                    <button className="product__busket__btn">В корзину</button>
+                    <button className="product__busket__btn" onClick={()=>{addToBasket(id)}}>В корзину</button>
                 </div>
             <div className="product__favorite__container"  onClick={()=>{toggleLike(id, like)}}>
                 <IconHeart className={like ? "product__favorite__icon_like" : "product__favorite__icon"}/>

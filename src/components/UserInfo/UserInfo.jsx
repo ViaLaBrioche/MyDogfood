@@ -10,8 +10,8 @@ export const UserInfo = () => {
     const navigate = useNavigate()
     const {user, logout} = useContext(UserContext)
             
-    return  <><Link className="favorite__btn__link" to="/my_dogfood">
-                <button className="favorite__btn__back" type="button">Назад</button></Link>
+    return  <><Link to="/my_dogfood">
+                <button className="btn__back" type="button">Назад</button></Link>
             <h1>Профиль</h1>
             <div className="user__container">
                 <div className="user__info"> 
