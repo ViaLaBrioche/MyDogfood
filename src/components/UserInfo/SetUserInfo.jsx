@@ -10,8 +10,8 @@ export const SetUserInfo = () => {
     const {register, handleSubmit} = useForm({})
     const {user, setUserSubmit} = useContext(UserContext)
             
-    return   <><Link className="favorite__btn__link" to="/userInfo">
-                    <button className="favorite__btn__back">Назад</button></Link>
+    return   <><Link to="/userInfo">
+                    <button className="btn__back">Назад</button></Link>
             <h1>Редактирование профиля</h1>
             <div className="user__container">
                 <div className="user__info">
