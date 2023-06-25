@@ -1,17 +1,16 @@
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../../context/Context";
-import { Card } from "../Card/Card";
-
-
+import { CardBasket } from "../CardBasket/CardBasket";
+import './basket.scss'
 export const BasketCardsList= () => {
+
 const {basketCards} = useContext(UserContext)
-console.log(basketCards)
 
 return (  
-    <div className="cards__container">
+    <div className="basket__left">
     {basketCards.map((item) => {
-      return <Card key={item.name} {...item} product={item} />;
+      return <CardBasket key={item.name} {...item} product={item} />;
     })}
   </div>
     )

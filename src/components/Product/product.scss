@@ -14,6 +14,7 @@ $yellow: #FFE44D;
 .product__container_img_active {
     display: flex;
     justify-content: space-between;
+    gap: 40px;
 }
 
 .product__image {
@@ -31,6 +32,7 @@ $yellow: #FFE44D;
 .product__container__active {
     display: flex;
     flex-direction: column;
+    gap: 24px;
 }
 
 .product__favorite__container {
@@ -54,33 +56,21 @@ $yellow: #FFE44D;
 }
 
 #counter {
-    height: 95%;
-    width: 30%;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
     border: 0.5px solid #7B8E98; 
-    border-radius: 15px;
+    border-radius: 20px;
 
 }
 
 .counter__btns {
     border: none;
-    height: 1em;
-    width: 1em;
     background-color: rgb(255, 255, 255, 0);
     cursor: pointer;
 }
 
-#counter input {
-    height: max-content;
-    width: max-content;
-    font-size: 1.5em;
-}
-
-.button__count__minus {
-    margin-top: -0.1em;
-}
 
 .product__busket__btn {
     background: $yellow;
@@ -169,4 +159,8 @@ $yellow: #FFE44D;
 
 .error__textarea {
     margin: 10px 0px 10px 0px;
+}
+
+.minus__active {
+    fill: #1A1A1A;
 }

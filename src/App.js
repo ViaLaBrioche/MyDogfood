@@ -40,6 +40,7 @@ function App() {
   const [reviews, setReviews] = useState([])
   const [basketCards, setBasketCards] = useState([])
   const navigate = useNavigate()
+
   const setUserSubmit = (data) => {
     Promise.all([api.setUserInfo(data), api.setUserAvatar(data)])
     .then(()=> {
@@ -147,9 +148,7 @@ function App() {
     return cards;
   }
   return   cards.filter(({name}) => 
-      name.toLowerCase().includes(searchText.toLowerCase())
-      
-      
+      name.toLowerCase().includes(searchText.toLowerCase())      
   )
 };
 
@@ -206,23 +205,6 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
 },[searchTerm, isAuthorized]);
 
 
-
-  useEffect(() => {
-    const Debounce = setTimeout(() => {
-    !isAuthorized &&
-    api.getAllItems()
-    .then((cardsData) => {
-      const cards = cardsData.products.filter(item => 
-        item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
-      setCards(filterCards(searchTerm, cards))
-      setFavoritesCards(filterFavorites(cards))
-      return
-      })
-    }, 300);
-    return () => clearTimeout(Debounce)
-},[searchTerm, isAuthorized])
-
-
   useEffect(()=>{
     if(localStorage.getItem('token')) {
       setIsAuthorized(true)
@@ -232,7 +214,6 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
 
 
   const contextUser = {
-    basketCards,
     addToBasket,
     setReviews,
     updateReviews,
@@ -242,6 +223,7 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
     setUserSubmit,
     toggleLike,
     logout,
+    basketCards,
     reviews,
     user,
     openTextarea,

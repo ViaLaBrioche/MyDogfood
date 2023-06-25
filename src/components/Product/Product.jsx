@@ -9,21 +9,19 @@ import { UserContext } from "../../context/Context";
 import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
 import { ReviewForm } from "../Reviews/ReviewForm";
 import { RatingProduct } from "../Rating/RatingProduct";
-
-
+import { CounterBtn } from "../CounterBtn/CounterBtn";
 
 
 export const Product = ({product, id}) => {
 
     
     const {user, toggleLike, addToBasket} = useContext(UserContext)
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(0)
     const [like, setLike] = useState(false);
     const [total, setTotal] = useState(0)
+    const discountTotal = product.price - (product.price / 100 * product.discount);
 
-
-    const totalPrice = (product) => {
-        const discountTotal = product.price - (product.price / 100 * product.discount);
+    const totalPrice = () => {
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
         setTotal(total)
     } 
@@ -38,18 +36,6 @@ export const Product = ({product, id}) => {
         setLike(isLike)
     }, [product, user]);
 
-    const addAlert = () => {
-        if (counter === 0 ) {
-        alert('Товар успешно добавлен в корзину')
-    }};
-
-    const productAddAlert = () => {
-        product.stock > counter &&
-        setCounter(counter + 1)
-        addAlert();
-        return
-    }
-
 
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
@@ -61,14 +47,12 @@ export const Product = ({product, id}) => {
         <div className="product__container_img_active">
             <img className="product__image" alt='images' src={product.pictures}/>
             <div className="product__container__active">
-                {!!product.discount && <div className="product__old__price">{counter > 0 ? product.price*counter : product.price}&nbsp;₽</div>}
-                <div className={`product__price ${!!product.discount && 'price__discount'}`}><b>{total}&nbsp;₽</b></div>
-                <div className="product__container__btns">
-                <div id="counter">
-                    <input type="button"  className="button__count__minus counter__btns" value="-" onClick={() => setCounter(counter > 0 ? counter - 1 : 0)}/>
-                    <div id="buttonCountNumber"><b>{counter}</b></div>
-                    <input type="button" className="button__count__plus counter__btns" value="+" onClick={() => productAddAlert()}/>
+                <div>
+                    {!!product.discount && <div className="product__old__price">{counter > 0 ? product.price*counter : product.price}&nbsp;₽</div>}
+                    <div className={`product__price ${!!product.discount && 'price__discount'}`}><b>{total}&nbsp;₽</b></div>
                 </div>
+                <div className="product__container__btns">
+                <CounterBtn product={product} counter={counter} setCounter={setCounter}/>
                     <button className="product__busket__btn" onClick={()=>{addToBasket(id)}}>В корзину</button>
                 </div>
             <div className="product__favorite__container"  onClick={()=>{toggleLike(id, like)}}>
@@ -112,7 +96,7 @@ export const Product = ({product, id}) => {
                     </div>
                     <div>
                         <p>{product.wight}</p>
-                        <p>{total}&nbsp;₽</p>                       
+                        <p>{product.discount ? discountTotal : product.price}&nbsp;₽</p>                       
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quasi commodi nemo saepe maiores iste pariatur sint sapiente dolor eligendi, placeat ratione consequuntur! Rerum vel praesentium nesciunt a, corrupti adipisci!</p>
                     </div>
                 </div>

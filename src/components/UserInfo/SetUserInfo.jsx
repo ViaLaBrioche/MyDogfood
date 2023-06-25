@@ -6,9 +6,13 @@ import './userInfo.scss'
 
 
 export const SetUserInfo = () => {
-
-    const {register, handleSubmit} = useForm({})
     const {user, setUserSubmit} = useContext(UserContext)
+    const {register, handleSubmit} = useForm({
+        defaultValues: {
+            name: user.name,
+            email: user.email
+    }})
+   
             
     return   <><Link to="/userInfo">
                     <button className="btn__back">Назад</button></Link>
@@ -22,9 +26,9 @@ export const SetUserInfo = () => {
                     <div className="user__data">
                         <h2>Мои данные</h2>
                         <label htmlFor="name">Имя</label>
-                        <input id="name" type="text"  placeholder={user.name} {...register("name")} />
+                        <input id="name" type="text"   {...register("name")} />
                         <label htmlFor="email" >Почта</label>
-                        <input id="email" type="email" placeholder={user.email} {...register("email")} />
+                        <input id="email" type="email" {...register("email")} />
                         <h3>Смена аватара</h3>
                         <label htmlFor="avatar">Адрес на картинку</label>
                         <input id="avatar" type="text" {...register("avatar")} /> 

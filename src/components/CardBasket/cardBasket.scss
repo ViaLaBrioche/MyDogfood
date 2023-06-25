@@ -1,0 +1,38 @@
+.basket__card__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    border-top: solid 1px #ECEFF1;
+        & img {
+            width: 30%;
+            height: 30%;
+        }
+        & .counter {
+            height: 50%;
+        }
+        & .card__left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 16px;
+        }
+        & .card__right {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        & .wight {
+            color: #7B8E98;
+            font-size: 12px;
+
+        }
+        & .name {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+        }
+        & .price {
+            font-weight: 800;
+        }
+}
