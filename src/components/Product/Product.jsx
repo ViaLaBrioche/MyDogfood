@@ -13,7 +13,6 @@ import { CounterBtn } from "../CounterBtn/CounterBtn";
 
 
 export const Product = ({product, id}) => {
-
     
     const {user, toggleLike, addToBasket} = useContext(UserContext)
     const [counter, setCounter] = useState(0)

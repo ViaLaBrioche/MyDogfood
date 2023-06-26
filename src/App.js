@@ -39,6 +39,8 @@ function App() {
   const [openTextarea, setOpenTextarea] = useState(false)
   const [reviews, setReviews] = useState([])
   const [basketCards, setBasketCards] = useState([])
+  const [product, setProduct] = useState({});
+
   const navigate = useNavigate()
 
   const setUserSubmit = (data) => {
@@ -52,17 +54,21 @@ function App() {
 
   
   const logout = () => {
+    
     localStorage.clear()
     navigate("/my_dogfood")
     setIsAuthorized(false)
     window.location.reload();
+    return 
+    
   }
 
   const openModal = useCallback(() => {
 
     if (!isAuthorized) {
       setIsForm(<AuthorizationForm/>)
-      setModalIsOpen(true)}
+      setModalIsOpen(true)
+    }
     else {navigate("/userInfo")}
     },[isAuthorized, navigate])
   
@@ -173,7 +179,8 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
       const updateCard = () => {
         const newCards = cards.map((e) => e._id === toggleCard._id ? toggleCard : e)
         setCards(newCards)
-        setFavoritesCards(filterFavorites(newCards, user._id))   
+        setFavoritesCards(filterFavorites(newCards, user._id))
+        setProduct(toggleCard)  
     } 
         updateCard()    
     return
@@ -185,7 +192,6 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
 
 
   useEffect(() => {
-    
     const Debounce = setTimeout(() => {
       !!isAuthorized &&
       Promise.all([api.getAllItems(), api.getUserInfo()])
@@ -237,6 +243,8 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
     searchTerm,
     favoritesCards,
     cards,
+    product,
+    setProduct
   }
 
   const contextModal = {

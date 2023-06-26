@@ -1,6 +1,7 @@
 import React from "react";
+import { AccordionList } from "../../components/AccordionList/AccordionList";
 import "./faq.css"
-import { AccordionList } from "./AccordionList";
+
 
 export const FaqPage = () => {
 
