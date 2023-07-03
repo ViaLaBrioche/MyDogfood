@@ -10,15 +10,18 @@ import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
 import { ReviewForm } from "../Reviews/ReviewForm";
 import { RatingProduct } from "../Rating/RatingProduct";
 import { CounterBtn } from "../CounterBtn/CounterBtn";
+import { useDispatch, useSelector } from "react-redux";
 
 
-export const Product = ({product, id}) => {
+export const Product = ({product, id, toggleLikeProduct}) => {
     
-    const {user, toggleLike, addToBasket} = useContext(UserContext)
+    const {addToBasket} = useContext(UserContext)
     const [counter, setCounter] = useState(0)
-    const [like, setLike] = useState(false);
     const [total, setTotal] = useState(0)
     const discountTotal = product.price - (product.price / 100 * product.discount);
+    const { user } = useSelector((s) => s.user)
+    const dispatch = useDispatch()
+    const [isLike, setIsLike] = useState(false)
 
     const totalPrice = () => {
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
@@ -29,12 +32,14 @@ export const Product = ({product, id}) => {
         totalPrice(product)
     },[counter])
 
-
     useEffect(() => {
-        const isLike = product.likes.includes(user._id)
-        setLike(isLike)
-    }, [product, user]);
+        const isLiked = product.likes.includes(user?._id);
+        setIsLike(isLiked)
+    }, [product.likes, user]);
 
+    const handleLike = (product, isLike) => {
+        toggleLikeProduct(product, isLike)
+    }
 
     return <div>
         <Link to="/my_dogfood"><button className="product__btn__back" type="button">Назад</button></Link>
@@ -54,8 +59,8 @@ export const Product = ({product, id}) => {
                 <CounterBtn product={product} counter={counter} setCounter={setCounter}/>
                     <button className="product__busket__btn" onClick={()=>{addToBasket(id)}}>В корзину</button>
                 </div>
-            <div className="product__favorite__container"  onClick={()=>{toggleLike(id, like)}}>
-                <IconHeart className={like ? "product__favorite__icon_like" : "product__favorite__icon"}/>
+            <div className="product__favorite__container"  onClick={()=>{handleLike(product, isLike)}}>
+                <IconHeart className={isLike ? "product__favorite__icon_like" : "product__favorite__icon"}/>
                 <button className="product__favorite__btn">В избранное</button>
             </div>
             <div className="product__info__container">

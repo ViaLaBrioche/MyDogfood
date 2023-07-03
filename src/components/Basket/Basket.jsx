@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { BasketCardsList } from "./BasketCardsList";
 import { ReactComponent as IconDelivery } from './Icons/delivery.svg'
 

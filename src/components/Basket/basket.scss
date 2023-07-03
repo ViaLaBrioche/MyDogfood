@@ -7,6 +7,9 @@
     grid-template-columns: 2fr 1fr;
     align-items: flex-start;
     gap: 60px;
+    & .rigth__container {
+        gap: 16px;
+    }
     & .basket__delivery {
         display: flex;
         padding: 1em;

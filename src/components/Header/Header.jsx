@@ -9,10 +9,12 @@ import './header.scss';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react'
 import { CardsContext } from '../../context/Context'
+import { useSelector } from 'react-redux'
 
 export const Header = () => {
     
-    const {favoritesCards, setSearchTerm, openModal} = useContext(CardsContext)
+    const { setSearchTerm, openModal} = useContext(CardsContext)
+    const { favoritesCards } = useSelector((s) => s.products)
     const isAmount = favoritesCards.length;
 
     return <header>

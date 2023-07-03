@@ -21,37 +21,28 @@ import { SetUserInfo } from './components/UserInfo/SetUserInfo';
 import { TokenForResetPasswordForm } from './components/ResetPasswordForm/TokenForResetPasswordForm';
 import { FaqPage } from './pages/FaqPage/FaqPage';
 import { BasketPage } from './pages/BasketPage/BasketPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from './storageToolkit/slices/userSlice';
+import { getAllProducts } from './storageToolkit/slices/productsSlice';
 
 function App() {
-
+  
   const config = {
     baseUrl: 'https://api.react-learning.ru/'
   };
-
+  const dispatch = useDispatch()
   const api = new Api(config);
-  const [cards, setCards] = useState([])
+  const { cards } = useSelector((s)=> s.products)
   const [searchTerm, setSearchTerm] = useState('')
-  const [user, setUser] = useState({});
-  const [favoritesCards, setFavoritesCards] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false) 
   const [isForm, setIsForm] = useState()
   const [openTextarea, setOpenTextarea] = useState(false)
   const [reviews, setReviews] = useState([])
   const [basketCards, setBasketCards] = useState([])
-  const [product, setProduct] = useState({});
+
 
   const navigate = useNavigate()
-
-  const setUserSubmit = (data) => {
-    Promise.all([api.setUserInfo(data), api.setUserAvatar(data)])
-    .then(()=> {
-      alert('Данные успешно изменены')
-      navigate("/userInfo")
-      window.location.reload();
-    })
-  }
-
   
   const logout = () => {
     
@@ -91,13 +82,6 @@ function App() {
   },[reviews])
 
 
-  const updateReviews = (idProduct) => {
-    api.getAllReviewsById(idProduct)
-    .then((res) => 
-      setReviews(res))
-      return
-    }
-
   const deleteReview = (idRew, idProduct)=> {
     return api.deleteReview(idRew, idProduct)
     .then(() => {
@@ -106,6 +90,14 @@ function App() {
       })
     .catch(()=> alert("Требуется авторизация"))
   }
+  
+  const updateReviews = (idProduct) => {
+    api.getAllReviewsById(idProduct)
+    .then((res) => 
+      setReviews(res))
+      return
+    }
+
 
   const getTokenDataSubmit = (data) => {
       return  api.setPassword(data)
@@ -158,11 +150,6 @@ function App() {
   )
 };
 
-  const filterFavorites = (cards, id) => {
-    const newCards = cards.filter((e) => e.likes.includes(id))
-    return newCards      
-}
-
   const addToBasket = (id) => api.getProductById(id)
   .then(card => {
     const newCards = cards.filter((e) => e._id.includes(card._id))
@@ -173,42 +160,13 @@ function App() {
     return
   })
   
-    
-const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
-  .then(toggleCard => {
-      const updateCard = () => {
-        const newCards = cards.map((e) => e._id === toggleCard._id ? toggleCard : e)
-        setCards(newCards)
-        setFavoritesCards(filterFavorites(newCards, user._id))
-        setProduct(toggleCard)  
-    } 
-        updateCard()    
-    return
-  })
-  .catch(err=> {
-      return alert(err)
-  });
-
 
 
   useEffect(() => {
-    const Debounce = setTimeout(() => {
-      !!isAuthorized &&
-      Promise.all([api.getAllItems(), api.getUserInfo()])
-      .then(([cardsData, userData]) => {
-        const cards = cardsData.products.filter(item => 
-          item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
-          setCards(filterCards(searchTerm, cards))
-          setUser(userData) 
-          setFavoritesCards(filterFavorites(cards, userData._id))
-        return
-      })
-      .catch((error) => {
-          console.log(error)
-      });
-      }, 300);
-    return () => clearTimeout(Debounce)
-},[searchTerm, isAuthorized]);
+    if (!isAuthorized) return;
+    dispatch(getUser())
+      .then(() => dispatch(getAllProducts()))
+  }, [dispatch, isAuthorized])
 
 
   useEffect(()=>{
@@ -226,25 +184,17 @@ const toggleLike = (id, isLike) => api.toggleLike(id, isLike)
     deleteReview,
     addReviewsSubmit,
     setOpenTextarea,
-    setUserSubmit,
-    toggleLike,
     logout,
     basketCards,
     reviews,
-    user,
     openTextarea,
   }
 
   const contextCards= {
     getTokenDataSubmit,
-    setCards,
     openModal,
     setSearchTerm,
     searchTerm,
-    favoritesCards,
-    cards,
-    product,
-    setProduct
   }
 
   const contextModal = {

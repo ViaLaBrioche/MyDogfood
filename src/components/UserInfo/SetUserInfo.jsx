@@ -1,26 +1,39 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/Context";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import './userInfo.scss'
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, setUserInfo } from "../../storageToolkit/slices/userSlice";
 
 
 export const SetUserInfo = () => {
-    const {user, setUserSubmit} = useContext(UserContext)
+    const { user } = useSelector((s)=> s.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {register, handleSubmit} = useForm({
         defaultValues: {
             name: user.name,
-            email: user.email
+            email: user.email,
+            avatar: user.avatar
     }})
-   
-            
+
+    useEffect(()=> {
+        dispatch(getUser())
+    }, [dispatch])
+    
+    const setUserSubmit = (data) => {   
+        dispatch(setUserInfo(data))
+        alert('Данные успешно изменены')
+        navigate("/userInfo")
+        }
+
     return   <><Link to="/userInfo">
                     <button className="btn__back">Назад</button></Link>
             <h1>Редактирование профиля</h1>
             <div className="user__container">
                 <div className="user__info">
                     <div className="user__avatar">
-                        <img src={user.avatar} alt=""/>
+                        <img src={user?.avatar} alt=""/>
                     </div>
                     <form className="modal__form" onSubmit={handleSubmit(setUserSubmit)}>
                     <div className="user__data">

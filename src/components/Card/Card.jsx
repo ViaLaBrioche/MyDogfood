@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { ReactComponent as IconHeart } from './Icons/heart.svg'
-import { useContext } from "react";
-import { UserContext } from "../../context/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLike } from "../../storageToolkit/slices/productsSlice";
 
 
-export const Card = ({name, likes, price,wight,pictures,_id, discount}) => {
-
-    const {user, toggleLike} = useContext(UserContext)
+export const Card = ({product, name, likes, price,wight,pictures,_id, discount}) => {
+    const { user } = useSelector((s) => s.user)
+    const dispatch = useDispatch()
+    
     const like = likes.includes(user._id)
 
     function Price(props) {
@@ -25,7 +26,7 @@ export const Card = ({name, likes, price,wight,pictures,_id, discount}) => {
             {!!discount && <div className="card__discount"> 
                         <span className='card__discount'>-{discount}%</span>
                     </div>}
-                    <button onClick={()=> toggleLike(_id, like) } className="card__favorite__btn"><IconHeart className={like ? "card__favorite_heart_like" : "card__favorite_heart"}/></button>
+                    <button onClick={()=> dispatch(toggleLike({product, like})) } className="card__favorite__btn"><IconHeart className={like ? "card__favorite_heart_like" : "card__favorite_heart"}/></button>
             </div>
             <Link className="card__link" to={`/product/${_id}`}>
                     <img src={pictures} className='card__image'></img>

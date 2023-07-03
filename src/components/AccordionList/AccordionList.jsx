@@ -4,7 +4,8 @@ import data from "../../data/accordionData.json"
 
 
 export const AccordionList = () => {
-    const accordionData = data
+    const accordionData = data;
+    
     return (
         <div>
             <div className="accordion">

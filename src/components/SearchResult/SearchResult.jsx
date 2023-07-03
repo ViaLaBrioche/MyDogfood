@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { CardsContext } from "../../context/Context";
 
 
 export const SearchResult = () => {
-
-    const {cards, searchTerm} = useContext(CardsContext) 
+    const { cards } = useSelector((s) => s.products)
+    const {searchTerm} = useContext(CardsContext) 
     
     const CountProduct = () => {
         if (cards.length === 1) {
