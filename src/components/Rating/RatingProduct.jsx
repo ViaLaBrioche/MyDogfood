@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ReactComponent as StarFill } from "./Icons/starFill.svg"
 import './rating.css'
-import { UserContext } from "../../context/Context";
+import { useSelector } from "react-redux";
 
 export const RatingProduct = () => {
-    const { reviews } = useContext(UserContext)
+    const { reviews } = useSelector((s)=> s.reviews)
 
     function Stars() {
         const counter = 0;

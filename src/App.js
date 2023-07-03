@@ -37,8 +37,6 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false) 
   const [isForm, setIsForm] = useState()
-  const [openTextarea, setOpenTextarea] = useState(false)
-  const [reviews, setReviews] = useState([])
   const [basketCards, setBasketCards] = useState([])
 
 
@@ -67,36 +65,6 @@ function App() {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-  
-  const addReviewsSubmit = useCallback((data) => {
-    return api.addReview(data)
-    .then(()=> {
-      alert("Благодарим за отзыв!")
-      updateReviews(data.id)
-      setOpenTextarea(false)
-      
-    })
-    .catch(() => {
-      return alert('Требуется авторизация')
-    })
-  },[reviews])
-
-
-  const deleteReview = (idRew, idProduct)=> {
-    return api.deleteReview(idRew, idProduct)
-    .then(() => {
-      alert("Отзыв удалён")
-      updateReviews(idProduct)
-      })
-    .catch(()=> alert("Требуется авторизация"))
-  }
-  
-  const updateReviews = (idProduct) => {
-    api.getAllReviewsById(idProduct)
-    .then((res) => 
-      setReviews(res))
-      return
-    }
 
 
   const getTokenDataSubmit = (data) => {
@@ -140,15 +108,6 @@ function App() {
       console.log(res, 'ERROR')
     })
   }
-  
-  const  filterCards = (searchText, cards) => {
-  if (!searchText) {
-    return cards;
-  }
-  return   cards.filter(({name}) => 
-      name.toLowerCase().includes(searchText.toLowerCase())      
-  )
-};
 
   const addToBasket = (id) => api.getProductById(id)
   .then(card => {
@@ -179,15 +138,8 @@ function App() {
 
   const contextUser = {
     addToBasket,
-    setReviews,
-    updateReviews,
-    deleteReview,
-    addReviewsSubmit,
-    setOpenTextarea,
     logout,
     basketCards,
-    reviews,
-    openTextarea,
   }
 
   const contextCards= {

@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { CardsContext } from "../../context/Context";
 
 
 export const SearchResult = () => {
-    const { cards } = useSelector((s) => s.products)
-    const {searchTerm} = useContext(CardsContext) 
+    const { cards, search } = useSelector((s) => s.products)
+    
     
     const CountProduct = () => {
         if (cards.length === 1) {
@@ -25,5 +24,5 @@ export const SearchResult = () => {
         }
     };
 
-    return <p className="main_result">По запросу  <b>{searchTerm}</b> {FoundProduct()} {cards.length} {CountProduct()} </p>
+    return <p className="main_result">По запросу  <b>{search}</b> {FoundProduct()} {cards.length} {CountProduct()} </p>
 }

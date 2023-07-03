@@ -1,14 +1,16 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useContext, useEffect, useCallback} from "react";
 import {ReactComponent as Star} from "./Icons/starFill.svg"
 import './reviews.scss';
-import { UserContext } from "../../context/Context";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addReview } from "../../storageToolkit/slices/reviewsSlice";
 
 export const  ReviewForm = ({idProduct}) => {
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
-    
-    const {setOpenTextarea, openTextarea, addReviewsSubmit, updateReviews} = useContext(UserContext)
+    const [openTextarea, setOpenTextarea] = useState(false)
+    const dispatch = useDispatch()
+
         const {register, handleSubmit, reset, formState: {errors}} = useForm({
             mode: 'onChange',
             defaultValues: {
@@ -16,19 +18,17 @@ export const  ReviewForm = ({idProduct}) => {
             'text': '',
             rating: '',
         }
-        })
+    })
 
-    useEffect(()=> {
-        return  updateReviews(idProduct)
-    }, [])
-
-    useEffect(() => {
+    const addReviewSubmit = useCallback((data) => {
+        dispatch(addReview(data))
+        setOpenTextarea(false)
         reset()
-    }, [addReviewsSubmit])
+    },[dispatch, idProduct])
 
     
     return (<div>
-                <form onSubmit={handleSubmit(addReviewsSubmit)}>
+                <form onSubmit={handleSubmit(addReviewSubmit)}>
                     <h2>Отзывы</h2>
                     {openTextarea ? <div className="product__reviews__text">
                     <div>

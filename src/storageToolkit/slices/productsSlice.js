@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { act } from "@testing-library/react";
 import { Api } from "../../components/Api/Api"
 import { filterFavorites, productRate } from "../utils/utils";
 
@@ -11,7 +10,7 @@ const api = new Api(config);
 const initialState = {
     cards: [],
     favoritesCards: [],
-    product: {}
+    search: undefined,
 }
 
 export const getAllProducts = createAsyncThunk('getAllProducts', 
@@ -28,6 +27,14 @@ export const toggleLike = createAsyncThunk('toggleLike',
         return { updateCards, like, userId: state.user.user._id  }
 })
 
+
+export const searchProduct = createAsyncThunk(
+    "products/asyncSearchProductByRequest",
+    async function(searchText) {
+        const newCards = await api.getAllItems()
+        return {newCards, searchText}
+    }
+)
 
 const productsSlice = createSlice({
     name: "products",
@@ -54,21 +61,29 @@ const productsSlice = createSlice({
                     state.products = state.cards.sort((a, b) => productRate(b.reviews) - productRate(a.reviews))
                     break;
                 }
+            },
+            searchText: (state, action) => {
+                state.search = action.payload
             }
         },
     extraReducers: (builder) => {
-        builder.addCase(getAllProducts.fulfilled, (state, action)  => {
-        state.cards = action.payload.products.filter(item => 
+        builder.addCase(getAllProducts.fulfilled, (state, {payload})  => {
+        state.cards = payload.products.filter(item => 
             item.author['_id'] === '645871a2e0bf2c519b9ccfbe')
-        state.favoritesCards = filterFavorites(state.cards, action.payload.userId)
+        state.favoritesCards = filterFavorites(state.cards, payload.userId)
         })
-        builder.addCase(toggleLike.fulfilled, (state, action) => {
-            const toggleCard = action.payload.updateCards
+        builder.addCase(toggleLike.fulfilled, (state, {payload}) => {
+            const toggleCard = payload.updateCards
             state.cards = state.cards.map((e) => e._id === toggleCard._id ? toggleCard : e)
-            state.favoritesCards = filterFavorites(state?.cards, action.payload.userId)
+            state.favoritesCards = filterFavorites(state?.cards, payload.userId)
+        })
+        .addCase(searchProduct.fulfilled, (state, {payload}) => {
+            state.cards = payload.newCards.products.filter(item => 
+                item.author['_id'] === '645871a2e0bf2c519b9ccfbe').filter(({name}) => 
+            name.toLowerCase().includes(payload.searchText.toLowerCase()))
         })
     }
 })
 
 export default productsSlice.reducer;
-export const { sortProducts } = productsSlice.actions
+export const { sortProducts, searchText} = productsSlice.actions

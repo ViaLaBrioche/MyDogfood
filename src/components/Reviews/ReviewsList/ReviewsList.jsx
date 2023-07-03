@@ -1,10 +1,18 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../../context/Context";
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductReviews } from "../../../storageToolkit/slices/reviewsSlice";
 import { Review } from "../Review";
 
 export const ReviewsList = ({idProduct}) => {
 
-    const {reviews} = useContext(UserContext)
+    
+    const {reviews } = useSelector((s) => s.reviews)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getAllProductReviews(idProduct))
+    },[dispatch])
 
     return <div>{reviews.map((e) => {
         return <Review key={e._id} {...e} idProduct={idProduct} review={e}/>})}</div>
