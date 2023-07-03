@@ -1,12 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setIsForm } from "../../storageToolkit/slices/modalSlice";
+import { Api } from "../Api/Api";
 import "../Modal/modal.scss"
-import { ModalContext } from "../../context/Context";
+
 
 export const ResetPasswordForm = () => {
 
-        const {resetDataSubmit} = useContext(ModalContext)
-        const { register, handleSubmit } = useForm({})                                      
+        const { register, handleSubmit } = useForm({})
+        const config = {
+                baseUrl: 'https://api.react-learning.ru/'
+        };
+        const dispatch = useDispatch()
+        const api = new Api(config);
+        
+        const resetDataSubmit = (data) => {
+        return api.resetPassword(data)
+        .then(()=> {
+                alert("Пароль отправлен вам на почту!")
+                dispatch(setIsForm('tokenForResetPassword'))
+        })
+        .catch((res)=>{
+                console.log(res, 'ERROR')
+        })
+        }
 
         return  <form className="modal__form" onSubmit={handleSubmit(resetDataSubmit)}>
                 <h1>Восстановление пароля</h1> 
@@ -15,4 +33,5 @@ export const ResetPasswordForm = () => {
                 <span>Срок действия временного пароля 24 ч.</span>
                 <button type="submit" className="button__yellow">Отправить</button>
         </form>
+
 }

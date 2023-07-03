@@ -6,18 +6,26 @@ import { Link, useNavigate } from "react-router-dom";
 import './userInfo.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUser } from "../../storageToolkit/slices/userSlice";
+import { getUser, setIsAuthorized } from "../../storageToolkit/slices/userSlice";
 
 
 export const UserInfo = () => {
     const navigate = useNavigate()
-    const {logout} = useContext(UserContext)
     const { user} = useSelector((s)=> s.user)
     const dispatch = useDispatch()
 
     useEffect(()=> {
         dispatch(getUser())
     }, [dispatch])
+
+    const logout = () => {
+    
+        localStorage.clear()
+        navigate("/my_dogfood")
+        dispatch(setIsAuthorized(false))
+        window.location.reload();
+        return 
+      }
 
 
     return  <><Link to="/my_dogfood">

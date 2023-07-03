@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import "../Modal/modal.scss"
-import { ModalContext } from "../../context/Context";
+import { useDispatch } from "react-redux";
+import { modalIsActive, setIsForm } from "../../storageToolkit/slices/modalSlice";
+import { Api } from "../Api/Api";
 
 export const RegistrationForm = () => {
 
-        const {regDataSubmit, openModal} = useContext(ModalContext)
         const { register, handleSubmit, formState: {errors} } = useForm() 
-        
+        const dispatch = useDispatch()
+
+        const config = {
+                baseUrl: 'https://api.react-learning.ru/'
+        };
+        const api = new Api(config);
+
         const emailRegister = {
                 required: {
                         value: true,
@@ -24,6 +31,15 @@ export const RegistrationForm = () => {
                 maxLength: {value: 20, message: "Пароль должен содержать максимум 20 символов" }
         }
 
+        const regDataSubmit = (data) => {
+        return api.registrationUser(data)
+        
+        .then((res)=> {
+                alert("Вы зарегистрировались!")
+                dispatch(modalIsActive(false))
+        })
+        }
+
         return  <form className="modal__form" onSubmit={handleSubmit(regDataSubmit)}>
                 <h1>Регистрация</h1> 
                 <div className="form__input">
@@ -35,7 +51,7 @@ export const RegistrationForm = () => {
                 </div>
                 <div className="form__container__btns">
                         <button type="submit" className="button__yellow">Зарегистрироваться</button>
-                        <button type="button" className="button__white" onClick={()=> openModal()}>Войти</button>
+                        <button type="button" className="button__white" onClick={()=> dispatch(setIsForm('authorization'))}>Войти</button>
                 </div> 
         </form>
 }

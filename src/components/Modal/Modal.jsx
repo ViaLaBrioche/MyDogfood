@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './modal.scss'
-import { ModalContext } from '../../context/Context';
 import { ReactComponent as Close } from './Icons/Close.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { modalIsActive } from '../../storageToolkit/slices/modalSlice';
 
 export const Modal = ()=> {
+    const dispatch = useDispatch()
+    const { isModal, isForm } = useSelector((s)=> s.modal)
 
 
-    const {closeModal, modalIsOpen, isForm} = useContext(ModalContext)
-
-    return  <div className={`overlay ${!!modalIsOpen ? "overlay__active" : null}`}>
-                <div className={`modal__container ${!!modalIsOpen ? "modal__active" : null}`}>
-                    <div className="modal__btn__close" onClick={()=> closeModal()}><Close className="modal__close__btn"/></div>
+    return  <div className={`overlay ${!!isModal ? "overlay__active" : null}`}>
+                <div className={`modal__container ${!!isModal? "modal__active" : null}`}>
+                    <div className="modal__btn__close" onClick={()=> dispatch(modalIsActive(false))}><Close className="modal__close__btn"/></div>
                     {isForm}
                 </div>
             </div>

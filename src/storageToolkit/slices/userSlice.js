@@ -9,6 +9,7 @@ const api = new Api(config);
 
 const initialState = {
     user: {},
+    isAuthorized: !!localStorage.getItem('token'),
     loading: false
 }
 
@@ -31,6 +32,11 @@ export const setUserInfo = createAsyncThunk(
 const userSlice = createSlice({
     name: "user",
     initialState,
+    reducers: {
+        setIsAuthorized: (state, {payload}) => {
+            state.isAuthorized = payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getUser.fulfilled, (state, action) => {
             state.user = action.payload
@@ -44,5 +50,5 @@ const userSlice = createSlice({
         })
     }   
 })
-
+export const { setIsAuthorized } = userSlice.actions
 export default userSlice.reducer;
