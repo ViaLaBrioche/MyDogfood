@@ -13,7 +13,7 @@ import { modalIsActive, setIsForm } from '../../storageToolkit/slices/modalSlice
 export const Header = () => {
 
 
-    const { favoritesCards } = useSelector((s) => s.products)
+    const { favoritesCards, basketCards } = useSelector((s) => s.products)
     const { isAuthorized } = useSelector((s) => s.user)
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export const Header = () => {
         },[isAuthorized])        
     
     const isAmount = favoritesCards.length;
-
+    const amountBasket = basketCards.length;
     return <header>
                 <div className="main__container">
                     <div className="header__container">
@@ -37,10 +37,15 @@ export const Header = () => {
                             <div className='header__heart__icon__conteiner'>
                             <Link to="/favorites">
                                 <IconHeart/>
-                                {!!isAmount && <div className='header__heart__favorite__amount'>{favoritesCards.length}</div>}
+                                {!!isAmount && <div className='header__heart__favorite__amount'>{isAmount}</div>}
                             </Link>
                             </div>
-                        <Link to="/basket"><IconBasket className="header__icon__basket" /></Link>
+                            <div className='header__heart__icon__conteiner'>
+                            <Link to="/basket">
+                                <IconBasket className="header__icon__basket" />
+                            {!!amountBasket && <div className='header__heart__favorite__amount'>{amountBasket}</div>}
+                            </Link>
+                            </div>
                         <IconDog className="header__icon__auth" onClick={()=> openModal()}/>
                         </div>
                     </div>

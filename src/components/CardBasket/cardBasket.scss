@@ -4,6 +4,10 @@
     align-items: center;
     gap: 32px;
     border-top: solid 1px #ECEFF1;
+        & .link__name {
+            text-decoration: none;
+            color: #1a1a1a;
+        }
         & img {
             width: 30%;
             height: 30%;

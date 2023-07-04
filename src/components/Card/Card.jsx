@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { ReactComponent as IconHeart } from './Icons/heart.svg'
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLike } from "../../storageToolkit/slices/productsSlice";
+import { addToBasket, toggleLike } from "../../storageToolkit/slices/productsSlice";
 
 
 export const Card = ({product, name, likes, price,wight,pictures,_id, discount}) => {
@@ -37,7 +37,7 @@ export const Card = ({product, name, likes, price,wight,pictures,_id, discount})
                 </div>
             </Link>
             <div className="card__container__btn">
-            <button id={_id}  className="card__btn" type="button">В корзину</button>
+            <button id={_id}  className="card__btn" type="button" onClick={() => dispatch(addToBasket(_id))}>В корзину</button>
         </div>
     </div>
     )

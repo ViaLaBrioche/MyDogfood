@@ -9,7 +9,8 @@ import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
 import { ReviewForm } from "../Reviews/ReviewForm";
 import { RatingProduct } from "../Rating/RatingProduct";
 import { CounterBtn } from "../CounterBtn/CounterBtn";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToBasket } from "../../storageToolkit/slices/productsSlice";
 
 
 export const Product = ({product, id, toggleLikeProduct}) => {
@@ -19,12 +20,13 @@ export const Product = ({product, id, toggleLikeProduct}) => {
     const discountTotal = product.price - (product.price / 100 * product.discount);
     const { user } = useSelector((s) => s.user)
     const [like, setLike] = useState(false)
-
+    const dispatch = useDispatch()
     const totalPrice = () => {
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
         setTotal(total)
-    } 
-    
+    }  
+
+
     useEffect(()=> {
         totalPrice(product)
     },[counter])
@@ -53,8 +55,8 @@ export const Product = ({product, id, toggleLikeProduct}) => {
                     <div className={`product__price ${!!product.discount && 'price__discount'}`}><b>{total}&nbsp;₽</b></div>
                 </div>
                 <div className="product__container__btns">
-                <CounterBtn product={product} counter={counter} setCounter={setCounter}/>
-                    <button className="product__busket__btn" onClick={()=>{}}>В корзину</button>
+                <CounterBtn product={product} counter={counter} setCounter={setCounter} />
+                    <button className="product__busket__btn" onClick={()=>{ dispatch(addToBasket(id))}}>В корзину</button>
                 </div>
             <div className="product__favorite__container"  onClick={()=>{handleLike(product, like)}}>
                 <IconHeart className={like ? "product__favorite__icon_like" : "product__favorite__icon"}/>

@@ -1,4 +1,4 @@
-export const productRate = (reviews) => {
+export const productRating = (reviews) => {
     if (!reviews || !reviews.length) {
         return 0;
     }

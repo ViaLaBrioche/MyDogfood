@@ -33,14 +33,6 @@ function App() {
       .then(() => dispatch(getAllProducts()))
   }, [dispatch, isAuthorized])
 
-
-  // const contextUser = {
-  //   addToBasket,
-  //   basketCards,
-  // }
-
- 
-
   return (
         <div className="App">
           <Header/>
