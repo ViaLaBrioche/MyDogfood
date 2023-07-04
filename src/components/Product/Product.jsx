@@ -4,24 +4,21 @@ import { ReactComponent as IconHeart } from './Icons/heart.svg'
 import { ReactComponent as IconDelivery } from './Icons/delivery.svg'
 import { ReactComponent as IconQuality } from './Icons/quality.svg'
 import { Link } from "react-router-dom";
-import { useState, useContext, useEffect} from "react"
-import { UserContext } from "../../context/Context";
+import { useState, useEffect} from "react"
 import { ReviewsList } from "../Reviews/ReviewsList/ReviewsList";
 import { ReviewForm } from "../Reviews/ReviewForm";
 import { RatingProduct } from "../Rating/RatingProduct";
 import { CounterBtn } from "../CounterBtn/CounterBtn";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 export const Product = ({product, id, toggleLikeProduct}) => {
     
-    const {addToBasket} = useContext(UserContext)
     const [counter, setCounter] = useState(0)
     const [total, setTotal] = useState(0)
     const discountTotal = product.price - (product.price / 100 * product.discount);
     const { user } = useSelector((s) => s.user)
-    const dispatch = useDispatch()
-    const [isLike, setIsLike] = useState(false)
+    const [like, setLike] = useState(false)
 
     const totalPrice = () => {
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
@@ -34,11 +31,11 @@ export const Product = ({product, id, toggleLikeProduct}) => {
 
     useEffect(() => {
         const isLiked = product.likes.includes(user?._id);
-        setIsLike(isLiked)
+        setLike(isLiked)
     }, [product.likes, user]);
 
-    const handleLike = (product, isLike) => {
-        toggleLikeProduct(product, isLike)
+    const handleLike = (product, like) => {
+        toggleLikeProduct(product, like)
     }
 
     return <div>
@@ -57,10 +54,10 @@ export const Product = ({product, id, toggleLikeProduct}) => {
                 </div>
                 <div className="product__container__btns">
                 <CounterBtn product={product} counter={counter} setCounter={setCounter}/>
-                    <button className="product__busket__btn" onClick={()=>{addToBasket(id)}}>В корзину</button>
+                    <button className="product__busket__btn" onClick={()=>{}}>В корзину</button>
                 </div>
-            <div className="product__favorite__container"  onClick={()=>{handleLike(product, isLike)}}>
-                <IconHeart className={isLike ? "product__favorite__icon_like" : "product__favorite__icon"}/>
+            <div className="product__favorite__container"  onClick={()=>{handleLike(product, like)}}>
+                <IconHeart className={like ? "product__favorite__icon_like" : "product__favorite__icon"}/>
                 <button className="product__favorite__btn">В избранное</button>
             </div>
             <div className="product__info__container">

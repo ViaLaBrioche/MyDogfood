@@ -29,7 +29,7 @@ export const toggleLike = createAsyncThunk('toggleLike',
 
 
 export const searchProduct = createAsyncThunk(
-    "products/asyncSearchProductByRequest",
+    "searchProduct",
     async function(searchText) {
         const newCards = await api.getAllItems()
         return {newCards, searchText}

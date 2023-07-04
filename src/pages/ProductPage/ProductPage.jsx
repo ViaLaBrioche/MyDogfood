@@ -27,9 +27,9 @@ export const ProductPage = () => {
         }
     }, []);
 
-    const toggleLikeProduct = useCallback((product, isLike) => {
-        dispatch(toggleLike({ product, isLike }))
-        if (isLike) {
+    const toggleLikeProduct = useCallback((product, like) => {
+        dispatch(toggleLike({ product, like }))
+        if (like) {
             const filteredLikes = product.likes.filter(e => e !== user?._id);
             setProduct((s) => ({ ...s, likes: filteredLikes }))
         } else {

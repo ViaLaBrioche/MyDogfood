@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback} from "react";
+import React, {useState, useCallback} from "react";
 import {ReactComponent as Star} from "./Icons/starFill.svg"
 import './reviews.scss';
 import { useForm } from "react-hook-form";

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalIsActive } from '../../storageToolkit/slices/modalSlice';
 
 export const Modal = ()=> {
+    
     const dispatch = useDispatch()
     const { isModal, isForm } = useSelector((s)=> s.modal)
 
