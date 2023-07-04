@@ -24,7 +24,7 @@ export const CounterBtn = memo(({product, counter}) => {
 
     return <div id="counter">
                 
-                <button type="button"  className='counter__btns' onClick={() => handleClickMinus(product)}><Minus className={product.countItem !== 1 && "minus__active"}/></button>
+                <button type="button"  className='counter__btns' onClick={() => handleClickMinus(product)}><Minus className={product.countItem !== 1 ? "minus__active" : undefined}/></button>
                 <div id="buttonCountNumber"><b>{product.countItem || counter}</b></div>
                 <button type="button" className="button__count__plus counter__btns" value={<Plus/>} onClick={() => handleClickPlus(product)}><Plus/></button>
             </div>
