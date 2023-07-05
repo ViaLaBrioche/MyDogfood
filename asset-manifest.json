@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MyDogfood/static/css/main.812f1e9c.css",
-    "main.js": "/MyDogfood/static/js/main.a3d6ff1f.js",
+    "main.css": "/MyDogfood/static/css/main.7ac09a29.css",
+    "main.js": "/MyDogfood/static/js/main.b84b4c99.js",
     "static/media/logoFooter.svg": "/MyDogfood/static/media/logoFooter.59bf6987ce5ad7a30c6f6d1b45a5226d.svg",
     "static/media/logoDogo.svg": "/MyDogfood/static/media/logoDogo.dda4d76b73ae669e8e4e16869937b992.svg",
     "static/media/quality.svg": "/MyDogfood/static/media/quality.f9c357b52bd41495be48401818180b35.svg",
@@ -11,9 +11,10 @@
     "static/media/dog.svg": "/MyDogfood/static/media/dog.f7c59a99facb6bd97b24953d94acd57a.svg",
     "static/media/logo-phone.svg": "/MyDogfood/static/media/logo-phone.51cbd71440eaa90946070b8848c12129.svg",
     "static/media/phone.svg": "/MyDogfood/static/media/phone.08e4ddc44210f4730f8fe1a123e1a66e.svg",
+    "static/media/trash.svg": "/MyDogfood/static/media/trash.ece44ecd78d80f519676181601d4d8e1.svg",
     "static/media/logo-vk.svg": "/MyDogfood/static/media/logo-vk.10a8eaae72b1edd421b5bc7a6c31d978.svg",
     "static/media/smile.svg": "/MyDogfood/static/media/smile.621005b621ed19df040e26957164b309.svg",
-    "static/media/delivery.svg": "/MyDogfood/static/media/delivery.7b8634da6632f6eb8eba1207c1c07586.svg",
+    "static/media/delivery.svg": "/MyDogfood/static/media/delivery.821085b796c7b196cf4bef443cb538eb.svg",
     "static/media/mail.svg": "/MyDogfood/static/media/mail.0e20096a3eb1756d05ecd72a7612e3e7.svg",
     "static/media/starFill.svg": "/MyDogfood/static/media/starFill.8eb7398576acf7d86ce427e4b385da33.svg",
     "static/media/Close.svg": "/MyDogfood/static/media/Close.5e61c055edd512728ad1cdd5254edba7.svg",
@@ -24,11 +25,11 @@
     "static/media/basket.svg": "/MyDogfood/static/media/basket.b3d22710863f40a39594fb6c3a3877ac.svg",
     "static/media/plus.svg": "/MyDogfood/static/media/plus.0733f2f92880ca346683a92de5c0ba78.svg",
     "static/media/minus.svg": "/MyDogfood/static/media/minus.0881411c2446922acdc1f4d8780aa3fe.svg",
-    "main.812f1e9c.css.map": "/MyDogfood/static/css/main.812f1e9c.css.map",
-    "main.a3d6ff1f.js.map": "/MyDogfood/static/js/main.a3d6ff1f.js.map"
+    "main.7ac09a29.css.map": "/MyDogfood/static/css/main.7ac09a29.css.map",
+    "main.b84b4c99.js.map": "/MyDogfood/static/js/main.b84b4c99.js.map"
   },
   "entrypoints": [
-    "static/css/main.812f1e9c.css",
-    "static/js/main.a3d6ff1f.js"
+    "static/css/main.7ac09a29.css",
+    "static/js/main.b84b4c99.js"
   ]
 }
