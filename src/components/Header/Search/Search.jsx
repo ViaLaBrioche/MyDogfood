@@ -18,8 +18,6 @@ export const Search = () => {
         dispatch(searchProduct(debounceValue))
     }, [debounceValue, dispatch])
 
-
-
     return  <form className="search__form">
     <input onChange={(e) => setSearchText(e.target.value)} type="search" placeholder="Search" className="search__input"/>
         <button type="button" className="search__button">

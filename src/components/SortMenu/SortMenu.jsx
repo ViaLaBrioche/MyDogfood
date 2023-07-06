@@ -14,12 +14,11 @@ export const SortMenu = () => {
         setBtnTarget(e)
     }
 
+    const arr = ['Популярные', 'Новинки', 'Сначала дешёвые', "Сначала дорогие", 'По рейтингу', "По скидке"]
+
+ 
+
     return <div className="sort__menu__container">
-        <button name="popular" type="button" onClick={(e)=> sort(e.target.name)} className={`sort__menu__btn ${btnTarget === "popular" && 'current'}`}>Популярные</button>
-        <button name="new" type="button" onClick={(e) => sort(e.target.name)}  className={`sort__menu__btn ${btnTarget === "new" && 'current'}`}>Новинки</button>
-        <button name="cheap" type="button" onClick={(e) => sort(e.target.name)}  className={`sort__menu__btn ${btnTarget === "cheap" && 'current'}`}>Сначала дешёвые</button>
-        <button name="expensive" type="button" onClick={(e) => sort(e.target.name)} className={`sort__menu__btn ${btnTarget === "expensive" && 'current'}`}>Сначала дорогие</button>
-        <button name="rating" type="button" onClick={(e) => sort(e.target.name )}  className={`sort__menu__btn ${btnTarget === "rating" && 'current'}`}>По рейтингу</button>
-        <button name="discount" type="button" onClick={(e) => sort(e.target.name)}  className={`sort__menu__btn ${btnTarget === "discount" && 'current'}`}>По скидке</button>
-    </div>
+        {arr.map((e)=> <button name={e} key={e} onClick={()=> sort(e)} className={`sort__menu__btn ${btnTarget === e && 'current'}`}>{e}</button> )}
+        </div>
 }

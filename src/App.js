@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import React from 'react';
 import { Header } from './components/Header/Header';
 import './components/CardList/main.css'
@@ -10,23 +10,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './storageToolkit/slices/userSlice';
 import { getAllProducts } from './storageToolkit/slices/productsSlice';
 import { AllRoutes } from './components/Routes/AllRoutes';
+import { modalIsActive, setIsForm } from './storageToolkit/slices/modalSlice';
 
 function App() {
 
   const dispatch = useDispatch()
   const {isAuthorized} = useSelector((s) => s.user)
-
-
-  // const addToBasket = (id) => api.getProductById(id)
-  // .then(card => {
-  //   const newCards = cards.filter((e) => e._id.includes(card._id))
-  //   const oldCards = basketCards.filter((e) => e._id.includes(card._id))
-  //     if (!!oldCards.length) {
-  //       alert('Товар уже в корзине')
-  //     } else {setBasketCards([...newCards, ...basketCards])}
-  //   return
-  // })
   
+  const openModal = useCallback(() => {
+    if (!isAuthorized) {
+        dispatch(modalIsActive(true))
+        dispatch(setIsForm('authorization'))
+    }
+    },[isAuthorized])
+
   useEffect(() => {
     if (!isAuthorized) return;
     dispatch(getUser())
@@ -37,7 +34,7 @@ function App() {
         <div className="App">
           <Header/>
         <div className='main__container content'>
-            <AllRoutes/>
+            {!!isAuthorized ? <AllRoutes/> :  openModal()}
             <Modal/>
         </div>
         <Footer />

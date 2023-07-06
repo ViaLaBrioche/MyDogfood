@@ -56,22 +56,22 @@ const productsSlice = createSlice({
     reducers: {
             sortProducts: (state, action) => {
                 switch (action.payload) {
-                    case 'cheap':
+                    case 'Сначала дешёвые':
                         state.products = state.cards.sort((a, b) => a.price - b.price)
                         break;
-                    case 'expensive':
+                    case 'Сначала дорогие':
                         state.products = state.cards.sort((a, b) => b.price - a.price)
                         break;
-                    case 'new':
+                    case 'Новинки':
                         state.products = state.cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                         break;
-                    case 'discount':
+                    case 'По скидке':
                         state.products = state.cards.sort((a, b) =>  b.discount - a.discount)
                         break;
-                    case 'popular':
+                    case 'Популярные':
                         state.products = state.cards.sort((a, b) => b.likes.length - a.likes.length)
                         break;
-                    case 'rating':
+                    case 'По рейтингу':
                         state.products = state.cards.sort((a, b) => productRating(b.reviews) - productRating(a.reviews))
                         break;
                     }

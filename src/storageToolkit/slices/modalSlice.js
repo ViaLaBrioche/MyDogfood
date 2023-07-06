@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { AuthorizationForm } from "../../components/AuthorizationForm/AuthorizationForm"
-import { RegistrationForm } from "../../components/RegistrationForm/RegistrationForm"
-import { ResetPasswordForm } from "../../components/ResetPasswordForm/ResetPasswordForm"
-import { TokenForResetPasswordForm } from "../../components/ResetPasswordForm/TokenForResetPasswordForm"
-
 
 const initialState = {
     isModal: false,
     isForm: '',
 }
+
 
 const modalSlice = createSlice({
     name: 'modal',
@@ -16,21 +12,20 @@ const modalSlice = createSlice({
     reducers: {
         modalIsActive: (state, {payload}) => {
             state.isModal = payload
-            state.isForm = payload
         },
-        setIsForm: (state, action) => {
-            switch (action.payload) {
+        setIsForm: (state, {payload}) => {
+            switch (payload) {
                 case 'authorization':
-                    state.isForm = <AuthorizationForm/>
+                    state.isForm = payload
                     break;
                 case 'registration':
-                    state.isForm = <RegistrationForm/>
+                    state.isForm = payload
                     break;
                 case 'resetPassword':
-                    state.isForm = <ResetPasswordForm/>
+                    state.isForm = payload
                     break;
                 case 'tokenForResetPassword':
-                    state.isForm = <TokenForResetPasswordForm/>
+                    state.isForm = payload
                     break;
             }
             },
