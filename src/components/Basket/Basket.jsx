@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BasketCardsList } from "./BasketCardsList";
 import { ReactComponent as IconDelivery } from './Icons/delivery.svg'
 
 export const Basket = () => {
-
+    const [item, setItem] = useState('')
     const {basketCards} = useSelector((s)=> s.products)
 
     const allProductPrice = basketCards.reduce((accum, i) =>
@@ -15,9 +15,21 @@ export const Basket = () => {
 
     const totalPrice = allProductPrice - allProductDiscount
 
+    const CountProduct = () => {
+        if (basketCards.length === 1) {
+            return "товар"
+        } else if (basketCards.length > 1 && basketCards.length < 5) {
+            return "товара"
+        } else if (basketCards.length > 1 || basketCards.length === 0) {
+            return "товаров"
+        } 
+    };
+    useEffect(() => {
+        setItem(CountProduct())       
+    },[])
 
     return <div>
-        <h1> В корзине </h1>
+        <h1> В корзине { basketCards.length} {item} </h1>
         <div className="basket__up">
             <BasketCardsList/>
             <div className="rigth__container">
@@ -26,15 +38,15 @@ export const Basket = () => {
                         <div className="basket__total">
                             <div className="items">
                                 <p>Товары</p>
-                                <p>{allProductPrice}</p>
+                                <p>{allProductPrice}&nbsp;₽</p>
                             </div>
                             <div className="discount">
                                 <p >Скидка</p>
-                                <p>{allProductDiscount}</p>                            
+                                <p>{allProductDiscount}&nbsp;₽</p>                            
                             </div>
                             <div className="total__price">
                                 <p >Общая стоимость</p>
-                                <p>{totalPrice}</p>
+                                <p>{totalPrice}&nbsp;₽</p>
                             </div>   
                         </div>
                         <button>Оформить заказ</button>

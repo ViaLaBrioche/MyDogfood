@@ -13,11 +13,10 @@ export const ProductPage = () => {
     const { id } = useParams();
     
     const dispatch = useDispatch()
-
     const config = {
         baseUrl: 'https://api.react-learning.ru/'
     };
-
+    
     const api = new Api(config);
 
     useEffect(() => {{
@@ -25,7 +24,7 @@ export const ProductPage = () => {
                 .then(res => setProduct(res)
             )
         }
-    }, []);
+    }, [id]);
 
     const toggleLikeProduct = useCallback((product, like) => {
         dispatch(toggleLike({ product, like }))

@@ -34,7 +34,7 @@ export const Modal = () => {
     },[dispatch, isForm])
 
 
-    return  <div className={`overlay ${!!isModal ? "overlay__active" : null}`}>
+    return  <div className={`overlay ${isModal && "overlay__active"}`}>
                 <div className={`modal__container ${!!isModal? "modal__active" : null}`}>
                     <div className="modal__btn__close" onClick={()=> dispatch(modalIsActive(false))}><Close className="modal__close__btn"/></div>
                     {form}

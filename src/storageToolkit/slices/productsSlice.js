@@ -81,6 +81,7 @@ const productsSlice = createSlice({
                 if (state.basketCards[i]._id === payload) {
                 if (state.basketCards[i].stock > state.basketCards[i].countItem) {
                     state.basketCards[i].countItem++
+                    localStorage.setItem('basket', JSON.stringify(state.basketCards))
                 }
                 return
                 }
@@ -94,6 +95,7 @@ const productsSlice = createSlice({
                 } else {
                     state.basketCards[i].countItem--
                 }
+                localStorage.setItem('basket', JSON.stringify(state.basketCards))
                 }
             }
             },

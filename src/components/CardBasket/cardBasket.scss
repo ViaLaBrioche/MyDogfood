@@ -25,6 +25,9 @@
             display: flex;
             gap: 32px;
             align-items: center;
+            & .delete {
+                cursor: pointer;
+            }
         }
         & .wight {
             color: #7B8E98;

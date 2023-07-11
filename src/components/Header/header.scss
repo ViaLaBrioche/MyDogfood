@@ -1,11 +1,19 @@
 header {
     background-color: #FFE44D;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 header .main__container .header__container {
     height: 80px;
+}
+
+.home__header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px;
 }
 
 .header__container  {
@@ -14,6 +22,7 @@ header .main__container .header__container {
     grid-template-rows: 1fr;
     align-items: center;
 }
+
 
 .header__icons {
     display: flex;
@@ -55,13 +64,13 @@ header .main__container .header__container {
     display: none;
 }
 
-.header__heart__icon__conteiner {
+.header__icon__container {
     position: relative;
     Width: 20px;
     Height: 18px;
 }
 
-.header__heart__favorite__amount {
+.header__bubble__amount {
     font-size: 12px;
     position: absolute;
     width: 19px;
@@ -77,6 +86,44 @@ header .main__container .header__container {
 
 .header__icon__auth, .header__icon__basket {
     cursor: pointer;
+}
+.home__up {
+    background-color: #FFE44D;
+    height: 500px;
+    padding: 10px;
+}
+.home__up__container {
+    & h1 {
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 900;
+    }
+    & h2 {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 28px;
+    }
+    & button {
+        display: flex;
+        padding: 16px 16px 16px 28px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        border-radius: 60px;
+        background: #FFF;
+        margin-top: 7%;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 24px;
+    }
+    & .link__header {
+        text-decoration: none;
+        
+    }
+
 }
 
 

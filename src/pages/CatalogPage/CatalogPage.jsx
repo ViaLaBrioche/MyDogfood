@@ -5,8 +5,6 @@ import { SortMenu } from "../../components/SortMenu/SortMenu";
 import { useSelector } from "react-redux";
 
 export const CatalogPage = () => {
-
-
     const { cards, search } = useSelector((s)=> s.products)
     
     return <div><SortMenu />

@@ -1,0 +1,24 @@
+.home__first__order {
+    margin-top: -5%;
+}
+
+.arrow__left {
+    transform: rotate(180deg);
+    margin-right: 10%;
+}
+
+.hits__up {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & .hits__btns {
+        display: flex;
+    }
+}
+
+.slider__list {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    height: 250px;
+}

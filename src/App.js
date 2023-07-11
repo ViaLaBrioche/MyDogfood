@@ -1,28 +1,27 @@
-import './App.css';
-import { useCallback, useEffect } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './components/Header/Header';
-import './components/CardList/main.css'
 import { Footer }  from './components/Footer/Footer'
-import './pages/NotFoundPage/notFound.css'
 import { Modal } from './components/Modal/Modal';
-import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './storageToolkit/slices/userSlice';
+import { AllRoutes } from '../src/Routes/AllRoutes';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from './storageToolkit/slices/productsSlice';
-import { AllRoutes } from './components/Routes/AllRoutes';
 import { modalIsActive, setIsForm } from './storageToolkit/slices/modalSlice';
+import './App.css';
+import './components/CardList/main.css'
+import './pages/NotFoundPage/notFound.css'
 
 function App() {
 
   const dispatch = useDispatch()
   const {isAuthorized} = useSelector((s) => s.user)
   
-  const openModal = useCallback(() => {
+  const openModal = () => {
     if (!isAuthorized) {
         dispatch(modalIsActive(true))
         dispatch(setIsForm('authorization'))
     }
-    },[isAuthorized])
+    }
 
   useEffect(() => {
     if (!isAuthorized) return;

@@ -14,27 +14,28 @@ import { addToBasket } from "../../storageToolkit/slices/productsSlice";
 
 
 export const Product = ({product, id, toggleLikeProduct}) => {
-    
-    const [counter, setCounter] = useState(0)
     const [total, setTotal] = useState(0)
     const discountTotal = product.price - (product.price / 100 * product.discount);
     const { user } = useSelector((s) => s.user)
     const [like, setLike] = useState(false)
     const dispatch = useDispatch()
+    const {basketCards} = useSelector((s)=> s.products)
+
+    const productBasket = basketCards.find((e) => e._id == id )
+    const counter = productBasket?.countItem
     const totalPrice = () => {
         const total = counter > 0 ? (discountTotal)*counter : discountTotal
         setTotal(total)
     }  
 
-
-    useEffect(()=> {
-        totalPrice(product)
-    },[counter])
-
     useEffect(() => {
         const isLiked = product.likes.includes(user?._id);
         setLike(isLiked)
     }, [product.likes, user]);
+
+    useEffect(()=> {
+            totalPrice(product)
+        },[counter])
 
     const handleLike = (product, like) => {
         toggleLikeProduct(product, like)
@@ -55,7 +56,7 @@ export const Product = ({product, id, toggleLikeProduct}) => {
                     <div className={`product__price ${!!product.discount && 'price__discount'}`}><b>{total}&nbsp;₽</b></div>
                 </div>
                 <div className="product__container__btns">
-                <CounterBtn product={product} counter={counter} setCounter={setCounter} />
+                <CounterBtn product={productBasket} id={id}  />
                     <button className="product__busket__btn" onClick={()=>{ dispatch(addToBasket(id))}}>В корзину</button>
                 </div>
             <div className="product__favorite__container"  onClick={()=>{handleLike(product, like)}}>

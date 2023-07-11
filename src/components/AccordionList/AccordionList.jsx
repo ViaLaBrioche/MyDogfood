@@ -9,8 +9,8 @@ export const AccordionList = () => {
     return (
         <div>
             <div className="accordion">
-            {accordionData.map(({ title, content }) => (
-                <Accordion title={title} content={content}/>
+            {accordionData.map((item) => (
+                <Accordion key={item.title} {...item}/>
             ))}
             </div>
         </div>

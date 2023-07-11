@@ -41,7 +41,7 @@ border-radius: 12px;
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 40px;
-    min-width: 480px;
+    /* min-width: 480px; */
 }
 
 .card {
@@ -56,7 +56,7 @@ border-radius: 12px;
 .card__image {
     object-fit: contain;
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 5%;
 }
 
 .card__btn {

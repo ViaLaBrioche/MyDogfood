@@ -34,11 +34,11 @@ export const  ReviewForm = ({idProduct}) => {
                     <div>
                         {[...Array(5)].map((star, i) => {
                             const ratingValue = i + 1
-                            return (<label>
-                        <input key={i} type="radio" name="rating" {...register('rating', {required: "Укажите оценку"})}
+                            return (<label key={i}>
+                        <input type="radio" name="rating" {...register('rating', {required: "Укажите оценку"})}
                             value={ratingValue}
                             onClick={()=> setRating(ratingValue)} />
-                        <Star  className={`star ${(hover || rating) < ratingValue ? "rating__star__null" : null }`}
+                        <Star className={`star ${(hover || rating) < ratingValue ? "rating__star__null" : null }`}
                             onMouseEnter={() => setHover(ratingValue)}
                             onMouseLeave={()=> setHover(null)}/>
                     </label>)
