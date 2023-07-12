@@ -1,4 +1,5 @@
 import React from  "react";
+import { ReactComponent as LogoDogoMini } from "./Logo/logoMini.svg";
 import { ReactComponent as LogoFooter } from "./Logo/logoFooter.svg";
 import { ReactComponent as LogoInstagram } from "./Logo/logo-instagram.svg";
 import { ReactComponent as LogoPhone } from "./Logo/logo-phone.svg";
@@ -17,7 +18,7 @@ export const Footer = memo(() => {
         <div className='main__container'>
             <div className="footer__container">
                 <div className="footer__logo">
-                    <LogoFooter/>
+                    <Link to='/MyDogfood/homepage'><LogoDogoMini className="header__logo_mini"/><LogoFooter className="footer__logo"/></Link>
                     <span className="logo__info">© «Интернет-магазин DogFood.ru»</span>
                 </div>
                 <div className="footer__links">

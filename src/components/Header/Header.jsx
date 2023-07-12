@@ -26,7 +26,8 @@ export const Header = () => {
             dispatch(setIsForm('authorization'))
         }
         else {navigate("/userInfo")}
-    }       
+    }
+
     const watcher = () => {
         const currentUrl = window.location.href
         const toggle = currentUrl.includes('/homepage')

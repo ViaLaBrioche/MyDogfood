@@ -48,3 +48,13 @@ footer {
     text-decoration: none;
     color: #1A1A1A;
 }
+
+
+@media (max-width: 480px) {
+    .footer__logo {
+        display: none;
+    }
+    .header__logo_mini {
+        display: inline;
+    }
+}
