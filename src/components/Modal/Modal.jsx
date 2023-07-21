@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
 import { ResetPasswordForm } from '../ResetPasswordForm/ResetPasswordForm';
+import { TokenForResetPasswordForm } from '../TokenForResetPassword/TokenForResetPasswordForm';
 
 export const Modal = () => {
 
@@ -23,11 +24,10 @@ export const Modal = () => {
             break;
             case 'resetPassword': setForm(<ResetPasswordForm/>)
             break;
-            case 'tokenForResetPassword': setForm(<tokenForResetPassword/>)
+            case 'tokenForResetPassword': setForm(<TokenForResetPasswordForm/>)
             break;
-        }
-            
-        }
+        }  
+    }
 
     useEffect(()=>{
         forma()

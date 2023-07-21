@@ -18,7 +18,6 @@ export const ResetPasswordForm = () => {
         const resetDataSubmit = (data) => {
         return api.resetPassword(data)
         .then(()=> {
-                alert("Пароль отправлен вам на почту!")
                 dispatch(setIsForm('tokenForResetPassword'))
         })
         .catch((res)=>{

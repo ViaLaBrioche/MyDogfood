@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "../Modal/modal.scss"
 import { useDispatch } from "react-redux";
-import { modalIsActive, setIsForm } from "../../storageToolkit/slices/modalSlice";
+import { setIsForm } from "../../storageToolkit/slices/modalSlice";
 import { Api } from "../Api/Api";
 
 export const RegistrationForm = () => {
@@ -32,12 +32,12 @@ export const RegistrationForm = () => {
         }
 
         const regDataSubmit = (data) => {
-        return api.registrationUser(data)
-        
-        .then((res)=> {
-                alert("Вы зарегистрировались!")
-                dispatch(modalIsActive(false))
-        })
+                return api.registrationUser(data)
+                
+                .then((res)=> {
+                        alert("Вы зарегистрировались!")
+                        dispatch(setIsForm('authorization'))
+                })
         }
 
         return  <form className="modal__form" onSubmit={handleSubmit(regDataSubmit)}>
